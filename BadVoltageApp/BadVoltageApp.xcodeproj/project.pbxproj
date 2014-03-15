@@ -1,0 +1,502 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		635D063018D29B4D00CD8EE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D062F18D29B4D00CD8EE4 /* Foundation.framework */; };
+		635D063218D29B4D00CD8EE4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D063118D29B4D00CD8EE4 /* CoreGraphics.framework */; };
+		635D063418D29B4D00CD8EE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D063318D29B4D00CD8EE4 /* UIKit.framework */; };
+		635D063A18D29B4D00CD8EE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 635D063818D29B4D00CD8EE4 /* InfoPlist.strings */; };
+		635D063C18D29B4D00CD8EE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D063B18D29B4D00CD8EE4 /* main.m */; };
+		635D064018D29B4D00CD8EE4 /* BVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D063F18D29B4D00CD8EE4 /* BVAppDelegate.m */; };
+		635D064B18D29B4D00CD8EE4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 635D064A18D29B4D00CD8EE4 /* Images.xcassets */; };
+		635D065218D29B4D00CD8EE4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D065118D29B4D00CD8EE4 /* XCTest.framework */; };
+		635D065318D29B4D00CD8EE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D062F18D29B4D00CD8EE4 /* Foundation.framework */; };
+		635D065418D29B4D00CD8EE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D063318D29B4D00CD8EE4 /* UIKit.framework */; };
+		635D065C18D29B4D00CD8EE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 635D065A18D29B4D00CD8EE4 /* InfoPlist.strings */; };
+		635D065E18D29B4D00CD8EE4 /* BadVoltageAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D065D18D29B4D00CD8EE4 /* BadVoltageAppTests.m */; };
+		635D066818D4C4A900CD8EE4 /* bv-lightning.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 635D066718D4C4A900CD8EE4 /* bv-lightning.jpg */; };
+		635D066D18D4C5C200CD8EE4 /* BVPodcastEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D066C18D4C5C200CD8EE4 /* BVPodcastEpisode.m */; };
+		635D067018D4C7AE00CD8EE4 /* BVPodcastMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D066F18D4C7AE00CD8EE4 /* BVPodcastMedia.m */; };
+		635D067318D4C99600CD8EE4 /* BVPodcastRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D067218D4C99600CD8EE4 /* BVPodcastRepository.m */; };
+		635D067718D4D83700CD8EE4 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 635D067618D4D83700CD8EE4 /* settings.plist */; };
+		635D067A18D4DB0100CD8EE4 /* BVFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D067918D4DB0100CD8EE4 /* BVFeedParser.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		635D065518D29B4D00CD8EE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 635D062418D29B4D00CD8EE4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 635D062B18D29B4D00CD8EE4;
+			remoteInfo = BadVoltageApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		635D062C18D29B4D00CD8EE4 /* BadVoltageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadVoltageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		635D062F18D29B4D00CD8EE4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		635D063118D29B4D00CD8EE4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		635D063318D29B4D00CD8EE4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		635D063718D29B4D00CD8EE4 /* BadVoltageApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BadVoltageApp-Info.plist"; sourceTree = "<group>"; };
+		635D063918D29B4D00CD8EE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		635D063B18D29B4D00CD8EE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		635D063D18D29B4D00CD8EE4 /* BadVoltageApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BadVoltageApp-Prefix.pch"; sourceTree = "<group>"; };
+		635D063E18D29B4D00CD8EE4 /* BVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BVAppDelegate.h; sourceTree = "<group>"; };
+		635D063F18D29B4D00CD8EE4 /* BVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BVAppDelegate.m; sourceTree = "<group>"; };
+		635D064A18D29B4D00CD8EE4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		635D065018D29B4D00CD8EE4 /* BadVoltageAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadVoltageAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		635D065118D29B4D00CD8EE4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		635D065918D29B4D00CD8EE4 /* BadVoltageAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BadVoltageAppTests-Info.plist"; sourceTree = "<group>"; };
+		635D065B18D29B4D00CD8EE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		635D065D18D29B4D00CD8EE4 /* BadVoltageAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadVoltageAppTests.m; sourceTree = "<group>"; };
+		635D066718D4C4A900CD8EE4 /* bv-lightning.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bv-lightning.jpg"; sourceTree = "<group>"; };
+		635D066B18D4C5C200CD8EE4 /* BVPodcastEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastEpisode.h; sourceTree = "<group>"; };
+		635D066C18D4C5C200CD8EE4 /* BVPodcastEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastEpisode.m; sourceTree = "<group>"; };
+		635D066E18D4C7AE00CD8EE4 /* BVPodcastMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastMedia.h; sourceTree = "<group>"; };
+		635D066F18D4C7AE00CD8EE4 /* BVPodcastMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastMedia.m; sourceTree = "<group>"; };
+		635D067118D4C99600CD8EE4 /* BVPodcastRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastRepository.h; sourceTree = "<group>"; };
+		635D067218D4C99600CD8EE4 /* BVPodcastRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastRepository.m; sourceTree = "<group>"; };
+		635D067618D4D83700CD8EE4 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		635D067818D4DB0100CD8EE4 /* BVFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVFeedParser.h; sourceTree = "<group>"; };
+		635D067918D4DB0100CD8EE4 /* BVFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVFeedParser.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		635D062918D29B4D00CD8EE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				635D063218D29B4D00CD8EE4 /* CoreGraphics.framework in Frameworks */,
+				635D063418D29B4D00CD8EE4 /* UIKit.framework in Frameworks */,
+				635D063018D29B4D00CD8EE4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		635D064D18D29B4D00CD8EE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				635D065218D29B4D00CD8EE4 /* XCTest.framework in Frameworks */,
+				635D065418D29B4D00CD8EE4 /* UIKit.framework in Frameworks */,
+				635D065318D29B4D00CD8EE4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		635D062318D29B4D00CD8EE4 = {
+			isa = PBXGroup;
+			children = (
+				635D063518D29B4D00CD8EE4 /* BadVoltageApp */,
+				635D065718D29B4D00CD8EE4 /* BadVoltageAppTests */,
+				635D062E18D29B4D00CD8EE4 /* Frameworks */,
+				635D062D18D29B4D00CD8EE4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		635D062D18D29B4D00CD8EE4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				635D062C18D29B4D00CD8EE4 /* BadVoltageApp.app */,
+				635D065018D29B4D00CD8EE4 /* BadVoltageAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		635D062E18D29B4D00CD8EE4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				635D062F18D29B4D00CD8EE4 /* Foundation.framework */,
+				635D063118D29B4D00CD8EE4 /* CoreGraphics.framework */,
+				635D063318D29B4D00CD8EE4 /* UIKit.framework */,
+				635D065118D29B4D00CD8EE4 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		635D063518D29B4D00CD8EE4 /* BadVoltageApp */ = {
+			isa = PBXGroup;
+			children = (
+				635D066A18D4C58E00CD8EE4 /* Model */,
+				635D066918D4C55700CD8EE4 /* Resources */,
+				635D063E18D29B4D00CD8EE4 /* BVAppDelegate.h */,
+				635D063F18D29B4D00CD8EE4 /* BVAppDelegate.m */,
+				635D064A18D29B4D00CD8EE4 /* Images.xcassets */,
+				635D063618D29B4D00CD8EE4 /* Supporting Files */,
+			);
+			path = BadVoltageApp;
+			sourceTree = "<group>";
+		};
+		635D063618D29B4D00CD8EE4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				635D063718D29B4D00CD8EE4 /* BadVoltageApp-Info.plist */,
+				635D063818D29B4D00CD8EE4 /* InfoPlist.strings */,
+				635D063B18D29B4D00CD8EE4 /* main.m */,
+				635D063D18D29B4D00CD8EE4 /* BadVoltageApp-Prefix.pch */,
+				635D067618D4D83700CD8EE4 /* settings.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		635D065718D29B4D00CD8EE4 /* BadVoltageAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				635D065D18D29B4D00CD8EE4 /* BadVoltageAppTests.m */,
+				635D065818D29B4D00CD8EE4 /* Supporting Files */,
+			);
+			path = BadVoltageAppTests;
+			sourceTree = "<group>";
+		};
+		635D065818D29B4D00CD8EE4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				635D065918D29B4D00CD8EE4 /* BadVoltageAppTests-Info.plist */,
+				635D065A18D29B4D00CD8EE4 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		635D066918D4C55700CD8EE4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				635D066718D4C4A900CD8EE4 /* bv-lightning.jpg */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		635D066A18D4C58E00CD8EE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				635D066B18D4C5C200CD8EE4 /* BVPodcastEpisode.h */,
+				635D066C18D4C5C200CD8EE4 /* BVPodcastEpisode.m */,
+				635D066E18D4C7AE00CD8EE4 /* BVPodcastMedia.h */,
+				635D066F18D4C7AE00CD8EE4 /* BVPodcastMedia.m */,
+				635D067118D4C99600CD8EE4 /* BVPodcastRepository.h */,
+				635D067218D4C99600CD8EE4 /* BVPodcastRepository.m */,
+				635D067818D4DB0100CD8EE4 /* BVFeedParser.h */,
+				635D067918D4DB0100CD8EE4 /* BVFeedParser.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		635D062B18D29B4D00CD8EE4 /* BadVoltageApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 635D066118D29B4D00CD8EE4 /* Build configuration list for PBXNativeTarget "BadVoltageApp" */;
+			buildPhases = (
+				635D062818D29B4D00CD8EE4 /* Sources */,
+				635D062918D29B4D00CD8EE4 /* Frameworks */,
+				635D062A18D29B4D00CD8EE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BadVoltageApp;
+			productName = BadVoltageApp;
+			productReference = 635D062C18D29B4D00CD8EE4 /* BadVoltageApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		635D064F18D29B4D00CD8EE4 /* BadVoltageAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 635D066418D29B4D00CD8EE4 /* Build configuration list for PBXNativeTarget "BadVoltageAppTests" */;
+			buildPhases = (
+				635D064C18D29B4D00CD8EE4 /* Sources */,
+				635D064D18D29B4D00CD8EE4 /* Frameworks */,
+				635D064E18D29B4D00CD8EE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				635D065618D29B4D00CD8EE4 /* PBXTargetDependency */,
+			);
+			name = BadVoltageAppTests;
+			productName = BadVoltageAppTests;
+			productReference = 635D065018D29B4D00CD8EE4 /* BadVoltageAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		635D062418D29B4D00CD8EE4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = BV;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "The Girls and Me";
+				TargetAttributes = {
+					635D064F18D29B4D00CD8EE4 = {
+						TestTargetID = 635D062B18D29B4D00CD8EE4;
+					};
+				};
+			};
+			buildConfigurationList = 635D062718D29B4D00CD8EE4 /* Build configuration list for PBXProject "BadVoltageApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 635D062318D29B4D00CD8EE4;
+			productRefGroup = 635D062D18D29B4D00CD8EE4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				635D062B18D29B4D00CD8EE4 /* BadVoltageApp */,
+				635D064F18D29B4D00CD8EE4 /* BadVoltageAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		635D062A18D29B4D00CD8EE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				635D064B18D29B4D00CD8EE4 /* Images.xcassets in Resources */,
+				635D067718D4D83700CD8EE4 /* settings.plist in Resources */,
+				635D066818D4C4A900CD8EE4 /* bv-lightning.jpg in Resources */,
+				635D063A18D29B4D00CD8EE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		635D064E18D29B4D00CD8EE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				635D065C18D29B4D00CD8EE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		635D062818D29B4D00CD8EE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				635D064018D29B4D00CD8EE4 /* BVAppDelegate.m in Sources */,
+				635D067318D4C99600CD8EE4 /* BVPodcastRepository.m in Sources */,
+				635D067A18D4DB0100CD8EE4 /* BVFeedParser.m in Sources */,
+				635D067018D4C7AE00CD8EE4 /* BVPodcastMedia.m in Sources */,
+				635D063C18D29B4D00CD8EE4 /* main.m in Sources */,
+				635D066D18D4C5C200CD8EE4 /* BVPodcastEpisode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		635D064C18D29B4D00CD8EE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				635D065E18D29B4D00CD8EE4 /* BadVoltageAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		635D065618D29B4D00CD8EE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 635D062B18D29B4D00CD8EE4 /* BadVoltageApp */;
+			targetProxy = 635D065518D29B4D00CD8EE4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		635D063818D29B4D00CD8EE4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				635D063918D29B4D00CD8EE4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		635D065A18D29B4D00CD8EE4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				635D065B18D29B4D00CD8EE4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		635D065F18D29B4D00CD8EE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		635D066018D29B4D00CD8EE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		635D066218D29B4D00CD8EE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BadVoltageApp/BadVoltageApp-Prefix.pch";
+				INFOPLIST_FILE = "BadVoltageApp/BadVoltageApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		635D066318D29B4D00CD8EE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BadVoltageApp/BadVoltageApp-Prefix.pch";
+				INFOPLIST_FILE = "BadVoltageApp/BadVoltageApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		635D066518D29B4D00CD8EE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BadVoltageApp.app/BadVoltageApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BadVoltageApp/BadVoltageApp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BadVoltageAppTests/BadVoltageAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		635D066618D29B4D00CD8EE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BadVoltageApp.app/BadVoltageApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BadVoltageApp/BadVoltageApp-Prefix.pch";
+				INFOPLIST_FILE = "BadVoltageAppTests/BadVoltageAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		635D062718D29B4D00CD8EE4 /* Build configuration list for PBXProject "BadVoltageApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				635D065F18D29B4D00CD8EE4 /* Debug */,
+				635D066018D29B4D00CD8EE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		635D066118D29B4D00CD8EE4 /* Build configuration list for PBXNativeTarget "BadVoltageApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				635D066218D29B4D00CD8EE4 /* Debug */,
+				635D066318D29B4D00CD8EE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		635D066418D29B4D00CD8EE4 /* Build configuration list for PBXNativeTarget "BadVoltageAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				635D066518D29B4D00CD8EE4 /* Debug */,
+				635D066618D29B4D00CD8EE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 635D062418D29B4D00CD8EE4 /* Project object */;
+}

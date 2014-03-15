@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7947913E-A7CA-4398-BE51-3A7BD12CFEEB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BadVoltageApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FB1AEA7C-C87A-4AA5-8E20-B4FBFF6E33A2</key>
+		<string>https://github.com/Ld00d/badvoltage.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BadVoltageApp/BadVoltageApp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FB1AEA7C-C87A-4AA5-8E20-B4FBFF6E33A2</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Ld00d/badvoltage.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FB1AEA7C-C87A-4AA5-8E20-B4FBFF6E33A2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FB1AEA7C-C87A-4AA5-8E20-B4FBFF6E33A2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>badvoltage</string>
+		</dict>
+	</array>
+</dict>
+</plist>
