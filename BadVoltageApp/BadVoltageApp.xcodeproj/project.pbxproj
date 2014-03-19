@@ -25,6 +25,11 @@
 		635D067318D4C99600CD8EE4 /* BVPodcastRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D067218D4C99600CD8EE4 /* BVPodcastRepository.m */; };
 		635D067718D4D83700CD8EE4 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 635D067618D4D83700CD8EE4 /* settings.plist */; };
 		635D067A18D4DB0100CD8EE4 /* BVFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D067918D4DB0100CD8EE4 /* BVFeedParser.m */; };
+		635D067D18D5063400CD8EE4 /* BVPodcastListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D067C18D5063400CD8EE4 /* BVPodcastListTableViewController.m */; };
+		635D068018D7223000CD8EE4 /* BVSettingsRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D067F18D7223000CD8EE4 /* BVSettingsRepository.m */; };
+		635D068318D93BD700CD8EE4 /* BVPodcastPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068218D93BD700CD8EE4 /* BVPodcastPlayer.m */; };
+		635D068618D93BF600CD8EE4 /* BVPodcastPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068518D93BF600CD8EE4 /* BVPodcastPlayerViewController.m */; };
+		635D068818D941C200CD8EE4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D068718D941C200CD8EE4 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +69,15 @@
 		635D067618D4D83700CD8EE4 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		635D067818D4DB0100CD8EE4 /* BVFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVFeedParser.h; sourceTree = "<group>"; };
 		635D067918D4DB0100CD8EE4 /* BVFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVFeedParser.m; sourceTree = "<group>"; };
+		635D067B18D5063400CD8EE4 /* BVPodcastListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastListTableViewController.h; sourceTree = "<group>"; };
+		635D067C18D5063400CD8EE4 /* BVPodcastListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastListTableViewController.m; sourceTree = "<group>"; };
+		635D067E18D7223000CD8EE4 /* BVSettingsRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVSettingsRepository.h; sourceTree = "<group>"; };
+		635D067F18D7223000CD8EE4 /* BVSettingsRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVSettingsRepository.m; sourceTree = "<group>"; };
+		635D068118D93BD700CD8EE4 /* BVPodcastPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastPlayer.h; sourceTree = "<group>"; };
+		635D068218D93BD700CD8EE4 /* BVPodcastPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastPlayer.m; sourceTree = "<group>"; };
+		635D068418D93BF600CD8EE4 /* BVPodcastPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastPlayerViewController.h; sourceTree = "<group>"; };
+		635D068518D93BF600CD8EE4 /* BVPodcastPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastPlayerViewController.m; sourceTree = "<group>"; };
+		635D068718D941C200CD8EE4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635D068818D941C200CD8EE4 /* AVFoundation.framework in Frameworks */,
 				635D063218D29B4D00CD8EE4 /* CoreGraphics.framework in Frameworks */,
 				635D063418D29B4D00CD8EE4 /* UIKit.framework in Frameworks */,
 				635D063018D29B4D00CD8EE4 /* Foundation.framework in Frameworks */,
@@ -112,6 +127,7 @@
 		635D062E18D29B4D00CD8EE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				635D068718D941C200CD8EE4 /* AVFoundation.framework */,
 				635D062F18D29B4D00CD8EE4 /* Foundation.framework */,
 				635D063118D29B4D00CD8EE4 /* CoreGraphics.framework */,
 				635D063318D29B4D00CD8EE4 /* UIKit.framework */,
@@ -123,11 +139,17 @@
 		635D063518D29B4D00CD8EE4 /* BadVoltageApp */ = {
 			isa = PBXGroup;
 			children = (
-				635D066A18D4C58E00CD8EE4 /* Model */,
-				635D066918D4C55700CD8EE4 /* Resources */,
 				635D063E18D29B4D00CD8EE4 /* BVAppDelegate.h */,
 				635D063F18D29B4D00CD8EE4 /* BVAppDelegate.m */,
+				635D067B18D5063400CD8EE4 /* BVPodcastListTableViewController.h */,
+				635D067C18D5063400CD8EE4 /* BVPodcastListTableViewController.m */,
+				635D068118D93BD700CD8EE4 /* BVPodcastPlayer.h */,
+				635D068218D93BD700CD8EE4 /* BVPodcastPlayer.m */,
+				635D068418D93BF600CD8EE4 /* BVPodcastPlayerViewController.h */,
+				635D068518D93BF600CD8EE4 /* BVPodcastPlayerViewController.m */,
 				635D064A18D29B4D00CD8EE4 /* Images.xcassets */,
+				635D066A18D4C58E00CD8EE4 /* Model */,
+				635D066918D4C55700CD8EE4 /* Resources */,
 				635D063618D29B4D00CD8EE4 /* Supporting Files */,
 			);
 			path = BadVoltageApp;
@@ -182,6 +204,8 @@
 				635D067218D4C99600CD8EE4 /* BVPodcastRepository.m */,
 				635D067818D4DB0100CD8EE4 /* BVFeedParser.h */,
 				635D067918D4DB0100CD8EE4 /* BVFeedParser.m */,
+				635D067E18D7223000CD8EE4 /* BVSettingsRepository.h */,
+				635D067F18D7223000CD8EE4 /* BVSettingsRepository.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -287,8 +311,12 @@
 			files = (
 				635D064018D29B4D00CD8EE4 /* BVAppDelegate.m in Sources */,
 				635D067318D4C99600CD8EE4 /* BVPodcastRepository.m in Sources */,
+				635D068618D93BF600CD8EE4 /* BVPodcastPlayerViewController.m in Sources */,
+				635D068018D7223000CD8EE4 /* BVSettingsRepository.m in Sources */,
 				635D067A18D4DB0100CD8EE4 /* BVFeedParser.m in Sources */,
 				635D067018D4C7AE00CD8EE4 /* BVPodcastMedia.m in Sources */,
+				635D068318D93BD700CD8EE4 /* BVPodcastPlayer.m in Sources */,
+				635D067D18D5063400CD8EE4 /* BVPodcastListTableViewController.m in Sources */,
 				635D063C18D29B4D00CD8EE4 /* main.m in Sources */,
 				635D066D18D4C5C200CD8EE4 /* BVPodcastEpisode.m in Sources */,
 			);

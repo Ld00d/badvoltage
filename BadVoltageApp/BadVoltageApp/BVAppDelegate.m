@@ -7,13 +7,31 @@
 //
 
 #import "BVAppDelegate.h"
+#import "BVPodcastListTableViewController.h"
 
 @implementation BVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    BVPodcastListTableViewController *podcastListVC = [[BVPodcastListTableViewController alloc] init];
     
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:podcastListVC];
+    
+    [[self window] setRootViewController:navController];
+    
+    @try {
+        [self.window makeKeyAndVisible];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception.reason);
+    }
+    @finally {
+        
+    }
+    
+    
     return YES;
 }
 							

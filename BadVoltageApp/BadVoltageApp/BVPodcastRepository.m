@@ -10,6 +10,7 @@
 #import "BVPodcastEpisode.h"
 #import "BVPodcastMedia.h"
 #import "BVFeedParser.h"
+#import "BVSettingsRepository.h"
 
 static BVPodcastRepository *_podcastRepo;
 
@@ -21,9 +22,7 @@ static BVPodcastRepository *_podcastRepo;
 
 + (void)initialize
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
-    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:path];
-    _podcastRepo = [[BVPodcastRepository alloc] initWithSettings:settings];
+    _podcastRepo = [[BVPodcastRepository alloc] init];
 }
 
 + (BVPodcastRepository *)podcastRepository
@@ -31,12 +30,12 @@ static BVPodcastRepository *_podcastRepo;
     return _podcastRepo;
 }
 
-- (id)initWithSettings:(NSDictionary *)settings
+- (id)init
 {
     self = [super init];
     if (self) {
         _cache = [[NSMutableArray alloc] init];
-        _feedUrl = [settings objectForKey:@"BV_FEED_URL"];
+        _feedUrl = [BVSettingsRepository getSettingForKey:@"BV_FEED_URL"];
     }
     return self;
 }
@@ -47,6 +46,16 @@ static BVPodcastRepository *_podcastRepo;
     if ([_cache count] < range.location + range.length) {
 
         [self loadCacheWithRange:range];
+    }
+    
+    //if it's still beyond the range...
+    if ([_cache count] < range.location + range.length) {
+        if ([_cache count] + 1 < range.location ) {
+            return [[NSArray alloc] init];
+        } else {
+            range.length = range.length - ((range.location + range.length) - [_cache count]);
+        }
+        
     }
     
     return [_cache subarrayWithRange:range];
@@ -66,7 +75,7 @@ static BVPodcastRepository *_podcastRepo;
     
     NSInteger count = [_cache count];
     
-    for (int i=range.location, j=0; i<range.length; i++, j++) {
+    for (NSInteger i=range.location, j=0; i<[episodes count]; i++, j++) {
         if ( i < count ) {
             [_cache replaceObjectAtIndex:i withObject:[episodes objectAtIndex:j]];
         } else {
