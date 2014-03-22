@@ -33,6 +33,7 @@
 - (void)pause;
 - (void)fastForward;
 - (void)skipForward;
+- (NSString *)podcastEpisodeSummary;
 
 @end
 

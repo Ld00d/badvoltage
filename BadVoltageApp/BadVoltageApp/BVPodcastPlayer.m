@@ -23,6 +23,7 @@
 
 #import "BVPodcastPlayer.h"
 #define BUTTON_W 30.0
+#define BUTTON_H 20.0
 #define CTRLS_Y_OFFSET 40.0
 #define CTRLS_X_SPACING 20.0
 
@@ -35,6 +36,9 @@
     UIButton *_playButton;
     UIButton *_fastfwdButton;
     UIButton *_skipFwdButton;
+    UIView *_buttonView;
+    UITextView *_summaryView;
+    
     BOOL _isPlaying;
     
 }
@@ -58,30 +62,39 @@
 {
     CGRect frame = [self frame];
     CGRect btnFrame;
+    CGRect summaryFrame;
+    
+    summaryFrame = CGRectMake(0, 0, frame.size.width, frame.size.height - CTRLS_Y_OFFSET - 10.0);
+    _summaryView.frame = summaryFrame;
+    
+    frame.origin.y = frame.size.height - CTRLS_Y_OFFSET;
+    frame.size.height = BUTTON_H;
+    
+    _buttonView.frame = frame;
     
     float x = (frame.size.width - ((BUTTON_W * 6) + (CTRLS_X_SPACING * 5))) / 2.0;
     
-    btnFrame = CGRectMake(x, frame.size.height - CTRLS_Y_OFFSET, BUTTON_W, 20.0);
+    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
     _skipBackButton.frame = btnFrame;
     
     x = x + BUTTON_W + CTRLS_X_SPACING;
-    btnFrame = CGRectMake(x, frame.size.height - CTRLS_Y_OFFSET, BUTTON_W, 20.0);
+    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
     _rewindButton.frame = btnFrame;
     
     x = x + BUTTON_W + CTRLS_X_SPACING;
-    btnFrame = CGRectMake(x, frame.size.height - CTRLS_Y_OFFSET, BUTTON_W, 20.0);
+    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
     _stopButton.frame = btnFrame;
     
     x = x + BUTTON_W + CTRLS_X_SPACING;
-    btnFrame = CGRectMake(x, frame.size.height - CTRLS_Y_OFFSET, BUTTON_W, 20.0);
+    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
     _playButton.frame = btnFrame;
     
     x = x + BUTTON_W + CTRLS_X_SPACING;
-    btnFrame = CGRectMake(x, frame.size.height - CTRLS_Y_OFFSET, BUTTON_W, 20.0);
+    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
     _fastfwdButton.frame = btnFrame;
     
     x = x + BUTTON_W + CTRLS_X_SPACING;
-    btnFrame = CGRectMake(x, frame.size.height - CTRLS_Y_OFFSET, BUTTON_W, 20.0);
+    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
     _skipFwdButton.frame = btnFrame;
 
 }
@@ -90,40 +103,54 @@
 {
     UIButton *btn;
     
+    _summaryView = [[UITextView alloc] init];
+    [_summaryView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:.3]];
+    [_summaryView setTextColor:[UIColor whiteColor]];
+    [_summaryView setText:[_delegate podcastEpisodeSummary]];
+    //[_summaryView setContentInset:UIEdgeInsetsMake(10.0, 20.0, 10.0, 20.0)];
+    [_summaryView setEditable:NO];
+    [self addSubview:_summaryView];
+    
+    
+    _buttonView = [[UIView alloc] init];
+    [_buttonView setOpaque:NO];
+    [_buttonView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:.3]];
+    [self addSubview:_buttonView];
+    
     btn = [[UIButton alloc] init];
     [btn setTitle:@"|<" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(skipBackward:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:btn];
+    [_buttonView addSubview:btn];
     _skipBackButton = btn;
     
     btn = [[UIButton alloc] init];
     [btn setTitle:@"<<" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(rewind:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:btn];
+    [_buttonView addSubview:btn];
     _rewindButton = btn;
     
     btn = [[UIButton alloc] init];
     [btn setTitle:@"[]" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(stop:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:btn];
+    [_buttonView addSubview:btn];
     _stopButton = btn;
     
     btn = [[UIButton alloc] init];
     [btn setTitle:@">" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:btn];
+    [_buttonView addSubview:btn];
     _playButton = btn;
     
     btn = [[UIButton alloc] init];
     [btn setTitle:@">>" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(fastForward:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:btn];
+    [_buttonView addSubview:btn];
     _fastfwdButton = btn;
     
     btn = [[UIButton alloc] init];
     [btn setTitle:@">|" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(skipForward:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:btn];
+    [_buttonView addSubview:btn];
     _skipFwdButton = btn;
 }
 

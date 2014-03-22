@@ -59,8 +59,10 @@
 
 - (void)viewDidLoad
 {
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,6 +98,11 @@
 */
 
 #pragma mark - BVPodcastPlayerDelegate
+
+- (NSString*)podcastEpisodeSummary
+{
+    return [_episode summary];
+}
 
 - (void)skipBackward
 {}
