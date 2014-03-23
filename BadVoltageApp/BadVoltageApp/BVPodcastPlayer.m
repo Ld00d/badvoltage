@@ -107,7 +107,7 @@
     [_summaryView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:.3]];
     [_summaryView setTextColor:[UIColor whiteColor]];
     [_summaryView setText:[_delegate podcastEpisodeSummary]];
-    //[_summaryView setContentInset:UIEdgeInsetsMake(10.0, 20.0, 10.0, 20.0)];
+    [_summaryView setTextContainerInset:UIEdgeInsetsMake(5, 10, 5, 10)];
     [_summaryView setEditable:NO];
     [self addSubview:_summaryView];
     
@@ -166,6 +166,8 @@
 
 - (IBAction)stop:(id)sender
 {
+    _isPlaying = NO;
+    [_playButton setTitle:@">" forState:UIControlStateNormal];
     [_delegate stop];
 }
 
