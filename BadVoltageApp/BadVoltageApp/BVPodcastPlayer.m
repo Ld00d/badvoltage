@@ -22,6 +22,9 @@
 
 
 #import "BVPodcastPlayer.h"
+#import "BVCommand.h"
+#import "BVButton.h"
+
 #define BUTTON_W 30.0
 #define BUTTON_H 20.0
 #define CTRLS_Y_OFFSET 40.0
@@ -99,10 +102,19 @@
 
 }
 
+- (BVButton *)addButton:(NSString *)title withCommand:(BVCommand *)command
+{
+    BVButton *btn = [[BVButton alloc] init];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setCommand:command];
+    [_buttonView addSubview:btn];
+    
+    return btn;
+}
+
+
 - (void)addControls
 {
-    UIButton *btn;
-    
     _summaryView = [[UITextView alloc] init];
     [_summaryView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:.3]];
     [_summaryView setTextColor:[UIColor whiteColor]];
@@ -117,80 +129,56 @@
     [_buttonView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:.3]];
     [self addSubview:_buttonView];
     
-    btn = [[UIButton alloc] init];
-    [btn setTitle:@"|<" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(skipBackward:) forControlEvents:UIControlEventTouchUpInside];
-    [_buttonView addSubview:btn];
-    _skipBackButton = btn;
+    _skipBackButton = [self addButton:@"|<" withCommand:[_delegate skipBackwardCommand]];
+
+    _rewindButton = [self addButton:@"<<" withCommand:[_delegate rewindCommand]];
     
-    btn = [[UIButton alloc] init];
-    [btn setTitle:@"<<" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(rewind:) forControlEvents:UIControlEventTouchUpInside];
-    [_buttonView addSubview:btn];
-    _rewindButton = btn;
+    _stopButton = [self addButton:@"[]" withCommand:[_delegate stopCommand]];
     
-    btn = [[UIButton alloc] init];
-    [btn setTitle:@"[]" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(stop:) forControlEvents:UIControlEventTouchUpInside];
-    [_buttonView addSubview:btn];
-    _stopButton = btn;
+    _playButton = [self addButton:@">" withCommand:[_delegate playCommand]];
     
-    btn = [[UIButton alloc] init];
-    [btn setTitle:@">" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
-    [_buttonView addSubview:btn];
-    _playButton = btn;
+    _fastfwdButton = [self addButton:@">>" withCommand:[_delegate fastForwardCommand]];
     
-    btn = [[UIButton alloc] init];
-    [btn setTitle:@">>" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(fastForward:) forControlEvents:UIControlEventTouchUpInside];
-    [_buttonView addSubview:btn];
-    _fastfwdButton = btn;
-    
-    btn = [[UIButton alloc] init];
-    [btn setTitle:@">|" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(skipForward:) forControlEvents:UIControlEventTouchUpInside];
-    [_buttonView addSubview:btn];
-    _skipFwdButton = btn;
+    _skipFwdButton = [self addButton:@">|" withCommand:[_delegate skipForwardCommand]];
 }
 
 - (IBAction)skipBackward:(id)sender
 {
-    [_delegate skipBackward];
+    
 }
 
 - (IBAction)rewind:(id)sender
 {
-    [_delegate rewind];
+    
 }
 
 - (IBAction)stop:(id)sender
 {
     _isPlaying = NO;
     [_playButton setTitle:@">" forState:UIControlStateNormal];
-    [_delegate stop];
+    
 }
 
 - (IBAction)play:(id)sender
 {
     if (_isPlaying) {
         [_playButton setTitle:@">" forState:UIControlStateNormal];
-        [_delegate pause];
+        
     } else {
         [_playButton setTitle:@"||" forState:UIControlStateNormal];
-        [_delegate play];
+        
     }
     _isPlaying = !_isPlaying;
 }
 
 - (IBAction)fastForward:(id)sender
 {
-    [_delegate fastForward];
+    
 }
 
 - (IBAction)skipForward:(id)sender
 {
-    [_delegate skipForward];
+    
 }
 
 @end

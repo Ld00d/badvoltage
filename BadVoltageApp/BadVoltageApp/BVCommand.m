@@ -21,27 +21,32 @@
 //THE SOFTWARE.
 
 
-#import <UIKit/UIKit.h>
+#import "BVCommand.h"
 
-@class BVCommand;
+@implementation BVCommand
+{
+    void(^_action)(id);
+    BOOL(^_canPerform)(id);
+}
 
-@protocol BVPodcastPlayerDelegate <NSObject>
+- (id)initWithAction:(void (^)(id))action canPerformBlock:(BOOL (^)(id))block
+{
+    self = [super init];
+    if (self) {
+        _action = action;
+        _canPerform = block;
+    }
+    return self;
+}
 
-@required
-- (BVCommand *)skipBackwardCommand;
-- (BVCommand *)rewindCommand;
-- (BVCommand *)stopCommand;
-- (BVCommand *)playCommand;
-- (BVCommand *)pauseCommand;
-- (BVCommand *)fastForwardCommand;
-- (BVCommand *)skipForwardCommand;
+- (BOOL)canPerformAction:(id)object
+{
+    return _canPerform(object);
+}
 
-- (NSString *)podcastEpisodeSummary;
-
-@end
-
-@interface BVPodcastPlayer : UIView
-
-- (id)initWithDelegate:(id<BVPodcastPlayerDelegate>)delegate;
+- (void)performAction:(id)sender
+{
+    _action(sender);
+}
 
 @end

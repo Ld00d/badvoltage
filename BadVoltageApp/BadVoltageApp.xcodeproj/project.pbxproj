@@ -30,6 +30,9 @@
 		635D068318D93BD700CD8EE4 /* BVPodcastPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068218D93BD700CD8EE4 /* BVPodcastPlayer.m */; };
 		635D068618D93BF600CD8EE4 /* BVPodcastPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068518D93BF600CD8EE4 /* BVPodcastPlayerViewController.m */; };
 		635D068818D941C200CD8EE4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D068718D941C200CD8EE4 /* AVFoundation.framework */; };
+		635D068B18DE8FF800CD8EE4 /* BVCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068A18DE8FF800CD8EE4 /* BVCommand.m */; };
+		635D068E18DE94AE00CD8EE4 /* BVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068D18DE94AE00CD8EE4 /* BVViewController.m */; };
+		635D069118DE98E200CD8EE4 /* BVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D069018DE98E200CD8EE4 /* BVButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,12 @@
 		635D068418D93BF600CD8EE4 /* BVPodcastPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastPlayerViewController.h; sourceTree = "<group>"; };
 		635D068518D93BF600CD8EE4 /* BVPodcastPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastPlayerViewController.m; sourceTree = "<group>"; };
 		635D068718D941C200CD8EE4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		635D068918DE8FF800CD8EE4 /* BVCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVCommand.h; sourceTree = "<group>"; };
+		635D068A18DE8FF800CD8EE4 /* BVCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVCommand.m; sourceTree = "<group>"; };
+		635D068C18DE94AE00CD8EE4 /* BVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVViewController.h; sourceTree = "<group>"; };
+		635D068D18DE94AE00CD8EE4 /* BVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVViewController.m; sourceTree = "<group>"; };
+		635D068F18DE98E200CD8EE4 /* BVButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVButton.h; sourceTree = "<group>"; };
+		635D069018DE98E200CD8EE4 /* BVButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +160,12 @@
 				635D066A18D4C58E00CD8EE4 /* Model */,
 				635D066918D4C55700CD8EE4 /* Resources */,
 				635D063618D29B4D00CD8EE4 /* Supporting Files */,
+				635D068918DE8FF800CD8EE4 /* BVCommand.h */,
+				635D068A18DE8FF800CD8EE4 /* BVCommand.m */,
+				635D068C18DE94AE00CD8EE4 /* BVViewController.h */,
+				635D068D18DE94AE00CD8EE4 /* BVViewController.m */,
+				635D068F18DE98E200CD8EE4 /* BVButton.h */,
+				635D069018DE98E200CD8EE4 /* BVButton.m */,
 			);
 			path = BadVoltageApp;
 			sourceTree = "<group>";
@@ -309,7 +324,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635D068E18DE94AE00CD8EE4 /* BVViewController.m in Sources */,
 				635D064018D29B4D00CD8EE4 /* BVAppDelegate.m in Sources */,
+				635D068B18DE8FF800CD8EE4 /* BVCommand.m in Sources */,
 				635D067318D4C99600CD8EE4 /* BVPodcastRepository.m in Sources */,
 				635D068618D93BF600CD8EE4 /* BVPodcastPlayerViewController.m in Sources */,
 				635D068018D7223000CD8EE4 /* BVSettingsRepository.m in Sources */,
@@ -318,6 +335,7 @@
 				635D068318D93BD700CD8EE4 /* BVPodcastPlayer.m in Sources */,
 				635D067D18D5063400CD8EE4 /* BVPodcastListTableViewController.m in Sources */,
 				635D063C18D29B4D00CD8EE4 /* main.m in Sources */,
+				635D069118DE98E200CD8EE4 /* BVButton.m in Sources */,
 				635D066D18D4C5C200CD8EE4 /* BVPodcastEpisode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -45,6 +45,8 @@ static void *currentItemContext = &currentItemContext;
     BVPodcastEpisode * _episode;
     AVPlayer *_player;
     AVPlayerItem *_playerItem;
+    BOOL _playbackEnabled;
+    BOOL _isPlaying;
 }
 
 - (id)initWithPodcastEpisode:(BVPodcastEpisode *)episode
@@ -53,6 +55,8 @@ static void *currentItemContext = &currentItemContext;
     if (self) {
         _episode = episode;
         self.title = _episode.title;
+        _playbackEnabled = NO;
+        _isPlaying = NO;
     }
     return self;
 }
@@ -66,8 +70,6 @@ static void *currentItemContext = &currentItemContext;
 
 - (void)viewDidLoad
 {
-    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
     
     NSURL *mediaUrl = [NSURL URLWithString:[[_episode media] url]];
     
@@ -167,7 +169,7 @@ static void *currentItemContext = &currentItemContext;
                 
                 break;
             case AVPlayerStatusReadyToPlay:
-                
+                _playbackEnabled = YES;
                 break;
             case AVPlayerStatusFailed:
                 
@@ -228,32 +230,82 @@ static void *currentItemContext = &currentItemContext;
     return [_episode summary];
 }
 
-- (void)skipBackward
-{}
-
-- (void)rewind
-{}
-
-- (void)stop
+- (BVCommand *)skipBackwardCommand
 {
-    [_player pause];
-    [_player seekToTime:kCMTimeZero];
+    return [self command:@"skipBackwardCommand"
+                  action:^(id sender){}
+         canPerformBlock:^BOOL(id obj) {
+             return _playbackEnabled;
+         }
+            ];
 }
 
-- (void)play
+- (BVCommand *)rewindCommand
 {
-    [self playMedia];
+    return [self command:@"rewindCommand"
+                  action:^(id sender) {
+        [_player setRate:-1.0];
+    }
+         canPerformBlock:^BOOL(id obj) {
+        return [_playerItem canPlayFastReverse];
+    }];
 }
 
-- (void)pause
+- (BVCommand *)stopCommand
 {
-    [_player pause];
+    return [self command:@"stopCommand"
+                  action:^(id sender) {
+        [_player pause];
+        [_player seekToTime:kCMTimeZero];
+    }
+         canPerformBlock:^BOOL(id obj) {
+        return _isPlaying;
+    }];
 }
 
-- (void)fastForward
-{}
+- (BVCommand *)playCommand
+{
+    return [self command:@"playCommand"
+                  action:^(id sender) {
+                      [self playMedia];
+                  }
+         canPerformBlock:^BOOL(id obj) {
+             return !_isPlaying;
+         }];
+}
 
-- (void)skipForward
-{}
+- (BVCommand *)pauseCommand
+{
+    return [self command:@"pauseCommand"
+                  action:^(id sender) {
+                    [_player pause];
+                  }
+         canPerformBlock:^BOOL(id obj) {
+             return _isPlaying;
+         }];
+}
+
+- (BVCommand *)fastForwardCommand
+{
+    return [self command:@"fastForwardCommand"
+                  action:^(id sender) {
+                      [_player setRate:2.0];
+                  }
+         canPerformBlock:^BOOL(id obj) {
+             return [_playerItem canPlayFastForward];
+         }];
+
+}
+
+- (BVCommand *)skipForwardCommand
+{
+    return [self command:@"skipForwardCommand"
+                  action:^(id sender){}
+         canPerformBlock:^BOOL(id obj) {
+             return _playbackEnabled;
+         }
+            ];
+
+}
 
 @end

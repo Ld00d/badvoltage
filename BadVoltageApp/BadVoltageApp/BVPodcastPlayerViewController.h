@@ -23,9 +23,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BVPodcastPlayer.h"
+#import "BVViewController.h"
+
 @class BVPodcastEpisode;
 
-@interface BVPodcastPlayerViewController : UIViewController<BVPodcastPlayerDelegate>
+@interface BVPodcastPlayerViewController : BVViewController<BVPodcastPlayerDelegate>
 
 - (id)initWithPodcastEpisode:(BVPodcastEpisode *)episode;
 
