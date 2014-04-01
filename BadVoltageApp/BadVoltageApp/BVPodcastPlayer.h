@@ -28,13 +28,12 @@
 @protocol BVPodcastPlayerDelegate <NSObject>
 
 @required
-- (BVCommand *)skipBackwardCommand;
+
 - (BVCommand *)rewindCommand;
 - (BVCommand *)stopCommand;
 - (BVCommand *)playCommand;
 - (BVCommand *)pauseCommand;
 - (BVCommand *)fastForwardCommand;
-- (BVCommand *)skipForwardCommand;
 
 - (NSString *)podcastEpisodeSummary;
 

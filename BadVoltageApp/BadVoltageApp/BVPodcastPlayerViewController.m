@@ -230,15 +230,6 @@ static void *currentItemContext = &currentItemContext;
     return [_episode summary];
 }
 
-- (BVCommand *)skipBackwardCommand
-{
-    return [self command:@"skipBackwardCommand"
-                  action:^(id sender){}
-         canPerformBlock:^BOOL(id obj) {
-             return _playbackEnabled;
-         }
-            ];
-}
 
 - (BVCommand *)rewindCommand
 {
@@ -297,15 +288,6 @@ static void *currentItemContext = &currentItemContext;
 
 }
 
-- (BVCommand *)skipForwardCommand
-{
-    return [self command:@"skipForwardCommand"
-                  action:^(id sender){}
-         canPerformBlock:^BOOL(id obj) {
-             return _playbackEnabled;
-         }
-            ];
 
-}
 
 @end

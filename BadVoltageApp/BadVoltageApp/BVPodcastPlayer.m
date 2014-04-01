@@ -33,12 +33,11 @@
 @implementation BVPodcastPlayer
 {
     id<BVPodcastPlayerDelegate> _delegate;
-    UIButton *_skipBackButton;
     UIButton *_rewindButton;
     UIButton *_stopButton;
     UIButton *_playButton;
     UIButton *_fastfwdButton;
-    UIButton *_skipFwdButton;
+    
     UIView *_buttonView;
     UITextView *_summaryView;
     
@@ -67,45 +66,38 @@
     CGRect btnFrame;
     CGRect summaryFrame;
     
-    summaryFrame = CGRectMake(0, 0, frame.size.width, frame.size.height - CTRLS_Y_OFFSET - 10.0);
+    summaryFrame = CGRectMake(0, 0, frame.size.width, frame.size.height - CTRLS_Y_OFFSET );
     _summaryView.frame = summaryFrame;
     
     frame.origin.y = frame.size.height - CTRLS_Y_OFFSET;
-    frame.size.height = BUTTON_H;
+    frame.size.height = CTRLS_Y_OFFSET;
     
     _buttonView.frame = frame;
     
-    float x = (frame.size.width - ((BUTTON_W * 6) + (CTRLS_X_SPACING * 5))) / 2.0;
-    
-    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
-    _skipBackButton.frame = btnFrame;
-    
-    x = x + BUTTON_W + CTRLS_X_SPACING;
-    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
+    float x = (frame.size.width - ((BUTTON_W * 4) + (CTRLS_X_SPACING * 3))) / 2.0;
+    float y = (_buttonView.frame.size.height - BUTTON_H ) / 2.0;
+
+    btnFrame = CGRectMake(x, y, BUTTON_W, BUTTON_H);
     _rewindButton.frame = btnFrame;
     
     x = x + BUTTON_W + CTRLS_X_SPACING;
-    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
+    btnFrame = CGRectMake(x, y, BUTTON_W, BUTTON_H);
     _stopButton.frame = btnFrame;
     
     x = x + BUTTON_W + CTRLS_X_SPACING;
-    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
+    btnFrame = CGRectMake(x, y, BUTTON_W, BUTTON_H);
     _playButton.frame = btnFrame;
     
     x = x + BUTTON_W + CTRLS_X_SPACING;
-    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
+    btnFrame = CGRectMake(x, y, BUTTON_W, BUTTON_H);
     _fastfwdButton.frame = btnFrame;
     
-    x = x + BUTTON_W + CTRLS_X_SPACING;
-    btnFrame = CGRectMake(x, 0, BUTTON_W, BUTTON_H);
-    _skipFwdButton.frame = btnFrame;
-
 }
 
-- (BVButton *)addButton:(NSString *)title withCommand:(BVCommand *)command
+- (BVButton *)addButton:(UIImage *)image withCommand:(BVCommand *)command
 {
     BVButton *btn = [[BVButton alloc] init];
-    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setImage:image forState:UIControlStateNormal];
     [btn setCommand:command];
     [_buttonView addSubview:btn];
     
@@ -126,59 +118,18 @@
     
     _buttonView = [[UIView alloc] init];
     [_buttonView setOpaque:NO];
-    [_buttonView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:.3]];
+    [_buttonView setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:1]];
     [self addSubview:_buttonView];
     
-    _skipBackButton = [self addButton:@"|<" withCommand:[_delegate skipBackwardCommand]];
-
-    _rewindButton = [self addButton:@"<<" withCommand:[_delegate rewindCommand]];
+    _rewindButton = [self addButton:[UIImage imageNamed:@"rewind"] withCommand:[_delegate rewindCommand]];
     
-    _stopButton = [self addButton:@"[]" withCommand:[_delegate stopCommand]];
+    _stopButton = [self addButton:[UIImage imageNamed:@"stop"] withCommand:[_delegate stopCommand]];
     
-    _playButton = [self addButton:@">" withCommand:[_delegate playCommand]];
+    _playButton = [self addButton:[UIImage imageNamed:@"play"] withCommand:[_delegate playCommand]];
     
-    _fastfwdButton = [self addButton:@">>" withCommand:[_delegate fastForwardCommand]];
-    
-    _skipFwdButton = [self addButton:@">|" withCommand:[_delegate skipForwardCommand]];
+    _fastfwdButton = [self addButton:[UIImage imageNamed:@"fastforward"] withCommand:[_delegate fastForwardCommand]];
 }
 
-- (IBAction)skipBackward:(id)sender
-{
-    
-}
 
-- (IBAction)rewind:(id)sender
-{
-    
-}
-
-- (IBAction)stop:(id)sender
-{
-    _isPlaying = NO;
-    [_playButton setTitle:@">" forState:UIControlStateNormal];
-    
-}
-
-- (IBAction)play:(id)sender
-{
-    if (_isPlaying) {
-        [_playButton setTitle:@">" forState:UIControlStateNormal];
-        
-    } else {
-        [_playButton setTitle:@"||" forState:UIControlStateNormal];
-        
-    }
-    _isPlaying = !_isPlaying;
-}
-
-- (IBAction)fastForward:(id)sender
-{
-    
-}
-
-- (IBAction)skipForward:(id)sender
-{
-    
-}
 
 @end
