@@ -136,6 +136,7 @@ static UIImage *_bgImage;
                 reuseIdentifier:cellIdentifier];
         cell.contentView.backgroundColor = [UIColor clearColor];
         cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
+        cell.textLabel.textColor = [UIColor whiteColor];
     }
     
     BVPodcastEpisode *episode = [_episodes objectAtIndex:[indexPath row]];
