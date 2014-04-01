@@ -33,6 +33,8 @@
 		635D068B18DE8FF800CD8EE4 /* BVCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068A18DE8FF800CD8EE4 /* BVCommand.m */; };
 		635D068E18DE94AE00CD8EE4 /* BVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068D18DE94AE00CD8EE4 /* BVViewController.m */; };
 		635D069118DE98E200CD8EE4 /* BVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D069018DE98E200CD8EE4 /* BVButton.m */; };
+		63C15C4418E289AD004A25A1 /* horizontalblackbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C4318E289AD004A25A1 /* horizontalblackbg@2x.png */; };
+		63C15C4618E289F5004A25A1 /* horizontalblackbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C4518E289F5004A25A1 /* horizontalblackbg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		635D068D18DE94AE00CD8EE4 /* BVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVViewController.m; sourceTree = "<group>"; };
 		635D068F18DE98E200CD8EE4 /* BVButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVButton.h; sourceTree = "<group>"; };
 		635D069018DE98E200CD8EE4 /* BVButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVButton.m; sourceTree = "<group>"; };
+		63C15C4318E289AD004A25A1 /* horizontalblackbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "horizontalblackbg@2x.png"; sourceTree = "<group>"; };
+		63C15C4518E289F5004A25A1 /* horizontalblackbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horizontalblackbg.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 		635D063518D29B4D00CD8EE4 /* BadVoltageApp */ = {
 			isa = PBXGroup;
 			children = (
+				63C15C4718E28C34004A25A1 /* Controls */,
 				635D063E18D29B4D00CD8EE4 /* BVAppDelegate.h */,
 				635D063F18D29B4D00CD8EE4 /* BVAppDelegate.m */,
 				635D067B18D5063400CD8EE4 /* BVPodcastListTableViewController.h */,
@@ -203,6 +208,8 @@
 		635D066918D4C55700CD8EE4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				63C15C4518E289F5004A25A1 /* horizontalblackbg.png */,
+				63C15C4318E289AD004A25A1 /* horizontalblackbg@2x.png */,
 				635D066718D4C4A900CD8EE4 /* bv-lightning.jpg */,
 			);
 			name = Resources;
@@ -223,6 +230,13 @@
 				635D067F18D7223000CD8EE4 /* BVSettingsRepository.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		63C15C4718E28C34004A25A1 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,8 +316,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63C15C4618E289F5004A25A1 /* horizontalblackbg.png in Resources */,
 				635D064B18D29B4D00CD8EE4 /* Images.xcassets in Resources */,
 				635D067718D4D83700CD8EE4 /* settings.plist in Resources */,
+				63C15C4418E289AD004A25A1 /* horizontalblackbg@2x.png in Resources */,
 				635D066818D4C4A900CD8EE4 /* bv-lightning.jpg in Resources */,
 				635D063A18D29B4D00CD8EE4 /* InfoPlist.strings in Resources */,
 			);
@@ -533,6 +549,7 @@
 				635D066318D29B4D00CD8EE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		635D066418D29B4D00CD8EE4 /* Build configuration list for PBXNativeTarget "BadVoltageAppTests" */ = {
 			isa = XCConfigurationList;
@@ -541,6 +558,7 @@
 				635D066618D29B4D00CD8EE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

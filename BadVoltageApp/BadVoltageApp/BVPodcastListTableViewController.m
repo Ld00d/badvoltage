@@ -32,6 +32,8 @@
 @end
 
 static NSInteger _feedBatchSz;
+static UIImage *_logoImage;
+static UIImage *_bgImage;
 
 @implementation BVPodcastListTableViewController
 {
@@ -43,7 +45,9 @@ static NSInteger _feedBatchSz;
 {
     NSNumber *feedBatchSz = [BVSettingsRepository getSettingForKey:@"BV_FEED_FETCH_SZ"];
     _feedBatchSz = [feedBatchSz integerValue];
-
+    _logoImage = [UIImage imageNamed:@"horizontalblackbg"];
+    _bgImage = [UIImage imageNamed:@"bv-lightning.jpg"];
+    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -51,24 +55,52 @@ static NSInteger _feedBatchSz;
     self = [super initWithStyle:style];
     if (self) {
         _podcastRepo = [BVPodcastRepository podcastRepository];
+        
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
+    
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:_logoImage];
+    logoView.contentMode = UIViewContentModeScaleAspectFit;
+    logoView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
+    self.navigationItem.titleView = logoView;
+    
+    UIImageView *imgVw = [[UIImageView alloc] initWithImage:_bgImage];
+    imgVw.contentMode = UIViewContentModeTopLeft;
+    self.tableView.backgroundView = imgVw;
+    
+    
+    
     NSRange range;
     range.length = _feedBatchSz;
     range.location = 0;
     _episodes = [_podcastRepo getEpisodesWithRange:range];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+
+    
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,8 +132,10 @@ static NSInteger _feedBatchSz;
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleSubtitle
+                initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:cellIdentifier];
+        cell.contentView.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
     }
     
     BVPodcastEpisode *episode = [_episodes objectAtIndex:[indexPath row]];

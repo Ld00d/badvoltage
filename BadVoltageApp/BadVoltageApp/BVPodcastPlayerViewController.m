@@ -70,7 +70,7 @@ static void *currentItemContext = &currentItemContext;
 
 - (void)viewDidLoad
 {
-    
+
     NSURL *mediaUrl = [NSURL URLWithString:[[_episode media] url]];
     
     /*
