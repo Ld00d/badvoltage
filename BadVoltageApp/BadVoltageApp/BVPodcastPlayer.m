@@ -96,9 +96,8 @@
 
 - (BVButton *)addButton:(UIImage *)image withCommand:(BVCommand *)command
 {
-    BVButton *btn = [[BVButton alloc] init];
+    BVButton *btn = [[BVButton alloc] initWithCommand:command];
     [btn setImage:image forState:UIControlStateNormal];
-    [btn setCommand:command];
     [_buttonView addSubview:btn];
     
     return btn;

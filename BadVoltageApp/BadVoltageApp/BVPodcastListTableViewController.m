@@ -39,6 +39,9 @@ static UIImage *_bgImage;
 {
     BVPodcastRepository *_podcastRepo;
     NSArray *_episodes;
+    BVPodcastPlayerViewController *_selected;
+    BVPodcastPlayerViewController *_nowPlaying;
+    UIBarButtonItem *_nowPlayingButton;
 }
 
 + (void)initialize
@@ -55,6 +58,7 @@ static UIImage *_bgImage;
     self = [super initWithStyle:style];
     if (self) {
         _podcastRepo = [BVPodcastRepository podcastRepository];
+        _selected = _nowPlaying = nil;
         
     }
     return self;
@@ -80,7 +84,12 @@ static UIImage *_bgImage;
     imgVw.contentMode = UIViewContentModeTopLeft;
     self.tableView.backgroundView = imgVw;
     
+    _nowPlayingButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(nowPlayingTouched:)];
     
+    
+    self.navigationItem.rightBarButtonItem = _nowPlayingButton;
+    
+    _nowPlayingButton.enabled = NO;
     
     NSRange range;
     range.length = _feedBatchSz;
@@ -90,9 +99,18 @@ static UIImage *_bgImage;
     
 }
 
+- (IBAction)nowPlayingTouched:(id)sender
+{
+    _selected = _nowPlaying;
+    [[self navigationController] pushViewController:_selected animated:NO];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
-
+    if (_selected != nil && _selected.isPlaying) {
+        _nowPlaying = _selected;
+        _nowPlayingButton.enabled = YES;
+    }
     
     [super viewWillAppear:animated];
 }
@@ -135,7 +153,7 @@ static UIImage *_bgImage;
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:cellIdentifier];
         cell.contentView.backgroundColor = [UIColor clearColor];
-        cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
+        cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
         cell.textLabel.textColor = [UIColor whiteColor];
     }
     
@@ -148,58 +166,19 @@ static UIImage *_bgImage;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BVPodcastPlayerViewController *playerViewController = [[BVPodcastPlayerViewController alloc] initWithPodcastEpisode:[_episodes objectAtIndex:[indexPath row]]];
-    [[self navigationController] pushViewController:playerViewController animated:NO];
+    BVPodcastEpisode *episode = [_episodes objectAtIndex:[indexPath row]];
+    
+    if (_nowPlaying == nil || _nowPlaying.episode != episode) {
+        BOOL playbackAllowed = (_nowPlaying == nil);
+        _selected = [[BVPodcastPlayerViewController alloc] initWithPodcastEpisode:episode playbackEnabled:playbackAllowed];
+    } else {
+        _selected = _nowPlaying;
+    }
+
+    [[self navigationController] pushViewController:_selected animated:NO];
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

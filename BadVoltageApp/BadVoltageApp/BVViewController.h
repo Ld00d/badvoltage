@@ -2,7 +2,7 @@
 //  BVViewController.h
 //  BadVoltageApp
 //
-//  Created by Frank Poole on 3/22/14.
+//  Created by Brian Lampe on 3/22/14.
 //  Copyright (c) 2014 The Girls and Me. All rights reserved.
 //
 
@@ -11,6 +11,8 @@
 
 @interface BVViewController : UIViewController
 
-- (BVCommand *)command:(NSString *)name action:(void(^)(id))action canPerformBlock:(BOOL(^)(id))block;
+- (BVCommand *)command:(NSString *)name
+                action:(void(^)(id))action
+       canPerform:(BOOL)canPerform;
 
 @end

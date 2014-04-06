@@ -29,6 +29,9 @@
 
 @interface BVPodcastPlayerViewController : BVViewController<BVPodcastPlayerDelegate>
 
-- (id)initWithPodcastEpisode:(BVPodcastEpisode *)episode;
+@property (nonatomic, strong, readonly) BVPodcastEpisode *episode;
+@property (nonatomic, readonly) BOOL isPlaying;
+
+- (id)initWithPodcastEpisode:(BVPodcastEpisode *)episode playbackEnabled:(BOOL)enabled;
 
 @end

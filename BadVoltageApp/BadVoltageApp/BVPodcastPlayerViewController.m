@@ -27,12 +27,9 @@
 #import "BVPodcastPlayer.h"
 #import "BVPodcastEpisode.h"
 #import "BVPodcastMedia.h"
+#import "BVCommand.h"
 #import <AVFoundation/AVFoundation.h>
 
-
-@interface BVPodcastPlayerViewController ()
-
-@end
 
 static void *statusContext = &statusContext;
 static void *rateContext = &rateContext;
@@ -49,13 +46,23 @@ static void *currentItemContext = &currentItemContext;
     BOOL _isPlaying;
 }
 
-- (id)initWithPodcastEpisode:(BVPodcastEpisode *)episode
+- (BOOL)isPlaying
+{
+    return _isPlaying;
+}
+
+- (BVPodcastEpisode *)episode
+{
+    return _episode;
+}
+
+- (id)initWithPodcastEpisode:(BVPodcastEpisode *)e playbackEnabled:(BOOL)enabled
 {
     self = [super init];
     if (self) {
-        _episode = episode;
+        _episode = e;
         self.title = _episode.title;
-        _playbackEnabled = NO;
+        _playbackEnabled = enabled;
         _isPlaying = NO;
     }
     return self;
@@ -70,27 +77,28 @@ static void *currentItemContext = &currentItemContext;
 
 - (void)viewDidLoad
 {
-
-    NSURL *mediaUrl = [NSURL URLWithString:[[_episode media] url]];
-    
-    /*
-     Create an asset for inspection of a resource referenced by a given URL.
-     Load the values for the asset keys "tracks", "playable".
-     */
-    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:mediaUrl options:nil];
-    
-    NSArray *requestedKeys = @[@"tracks", @"playable"];
-    
-    /* Tells the asset to load the values of any of the specified keys that are not already loaded. */
-    [asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:
-     ^{
-         dispatch_async( dispatch_get_main_queue(),
-                        ^{
-                            /* IMPORTANT: Must dispatch to main queue in order to operate on the AVPlayer and AVPlayerItem. */
-                            [self prepareToPlayAsset:asset withKeys:requestedKeys];
-                        });
-     }];
-    
+    if (_playbackEnabled) {
+        NSURL *mediaUrl = [NSURL URLWithString:[[_episode media] url]];
+        
+        /*
+         Create an asset for inspection of a resource referenced by a given URL.
+         Load the values for the asset keys "tracks", "playable".
+         */
+        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:mediaUrl options:nil];
+        
+        NSArray *requestedKeys = @[@"tracks", @"playable"];
+        
+        
+        /* Tells the asset to load the values of any of the specified keys that are not already loaded. */
+        [asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:
+         ^{
+             dispatch_async( dispatch_get_main_queue(),
+                            ^{
+                                /* IMPORTANT: Must dispatch to main queue in order to operate on the AVPlayer and AVPlayerItem. */
+                                [self prepareToPlayAsset:asset withKeys:requestedKeys];
+                            });
+         }];
+    }
     
     [super viewDidLoad];
 }
@@ -169,7 +177,7 @@ static void *currentItemContext = &currentItemContext;
                 
                 break;
             case AVPlayerStatusReadyToPlay:
-                _playbackEnabled = YES;
+                [[self playCommand] setCanPerformAction:YES];
                 break;
             case AVPlayerStatusFailed:
                 
@@ -190,7 +198,11 @@ static void *currentItemContext = &currentItemContext;
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification
 {
-
+    [[self rewindCommand] setCanPerformAction:NO];
+    [[self stopCommand] setCanPerformAction:NO];
+    [[self fastForwardCommand] setCanPerformAction:NO];
+    [_player seekToTime:kCMTimeZero];
+    _isPlaying = NO;
 
 }
 
@@ -215,6 +227,11 @@ static void *currentItemContext = &currentItemContext;
     
     @try {
         [_player play];
+        _isPlaying = YES;
+        [[self rewindCommand] setCanPerformAction:[_playerItem canPlayFastReverse]];
+        [[self stopCommand] setCanPerformAction:YES];
+        [[self fastForwardCommand] setCanPerformAction:[_playerItem canPlayFastForward]];
+        
     }
     @catch (NSException *exception) {
         NSLog(@"Problem playing audio: %@", exception.reason);
@@ -236,22 +253,19 @@ static void *currentItemContext = &currentItemContext;
     return [self command:@"rewindCommand"
                   action:^(id sender) {
         [_player setRate:-1.0];
-    }
-         canPerformBlock:^BOOL(id obj) {
-        return [_playerItem canPlayFastReverse];
-    }];
+                  }
+              canPerform:NO];
 }
 
 - (BVCommand *)stopCommand
 {
     return [self command:@"stopCommand"
                   action:^(id sender) {
-        [_player pause];
-        [_player seekToTime:kCMTimeZero];
-    }
-         canPerformBlock:^BOOL(id obj) {
-        return _isPlaying;
-    }];
+                      [_player pause];
+                      [_player seekToTime:kCMTimeZero];
+                      _isPlaying = NO;
+                  }
+              canPerform:NO];
 }
 
 - (BVCommand *)playCommand
@@ -260,9 +274,7 @@ static void *currentItemContext = &currentItemContext;
                   action:^(id sender) {
                       [self playMedia];
                   }
-         canPerformBlock:^BOOL(id obj) {
-             return !_isPlaying;
-         }];
+              canPerform:NO];
 }
 
 - (BVCommand *)pauseCommand
@@ -271,9 +283,7 @@ static void *currentItemContext = &currentItemContext;
                   action:^(id sender) {
                     [_player pause];
                   }
-         canPerformBlock:^BOOL(id obj) {
-             return _isPlaying;
-         }];
+              canPerform:NO];
 }
 
 - (BVCommand *)fastForwardCommand
@@ -282,9 +292,7 @@ static void *currentItemContext = &currentItemContext;
                   action:^(id sender) {
                       [_player setRate:2.0];
                   }
-         canPerformBlock:^BOOL(id obj) {
-             return [_playerItem canPlayFastForward];
-         }];
+              canPerform:NO];
 
 }
 

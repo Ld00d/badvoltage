@@ -2,7 +2,7 @@
 //  BVButton.h
 //  BadVoltageApp
 //
-//  Created by Frank Poole on 3/22/14.
+//  Created by Brian Lampe on 3/22/14.
 //  Copyright (c) 2014 The Girls and Me. All rights reserved.
 //
 
@@ -12,6 +12,6 @@
 
 @interface BVButton : UIButton
 
-- (void)setCommand:(BVCommand *)command;
+- (id)initWithCommand:(BVCommand *)command;
 
 @end

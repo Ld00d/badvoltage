@@ -25,10 +25,11 @@
 
 @interface BVCommand : NSObject
 
-- (IBAction)performAction:(id)sender;
-- (BOOL)canPerformAction:(id)object;
+@property (nonatomic) BOOL canPerformAction;
 
-- (id)initWithAction:(void(^)(id))action canPerformBlock:(BOOL(^)(id))block;
+- (IBAction)performAction:(id)sender;
+
+- (id)initWithAction:(void(^)(id))action canPerform:(BOOL)canPerform;
 
 
 @end

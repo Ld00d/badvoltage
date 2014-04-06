@@ -26,22 +26,18 @@
 @implementation BVCommand
 {
     void(^_action)(id);
-    BOOL(^_canPerform)(id);
+   
 }
+@synthesize canPerformAction;
 
-- (id)initWithAction:(void (^)(id))action canPerformBlock:(BOOL (^)(id))block
+- (id)initWithAction:(void (^)(id))action canPerform:(BOOL)canPerform
 {
     self = [super init];
     if (self) {
         _action = action;
-        _canPerform = block;
+        self.canPerformAction = canPerform;
     }
     return self;
-}
-
-- (BOOL)canPerformAction:(id)object
-{
-    return _canPerform(object);
 }
 
 - (void)performAction:(id)sender
