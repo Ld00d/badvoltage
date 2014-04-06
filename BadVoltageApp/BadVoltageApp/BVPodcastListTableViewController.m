@@ -147,7 +147,6 @@ static UIImage *_bgImage;
     static NSString *cellIdentifier = @"podcastListTableCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    
     if (cell == nil) {
         cell = [[UITableViewCell alloc]
                 initWithStyle:UITableViewCellStyleDefault

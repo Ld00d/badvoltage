@@ -39,6 +39,7 @@
 		63C15C5D18EAF0F4004A25A1 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C5C18EAF0F4004A25A1 /* stop.png */; };
 		63C15C5F18EAF18D004A25A1 /* fastforward.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C5E18EAF18D004A25A1 /* fastforward.png */; };
 		63C15C6118EAF4AB004A25A1 /* rewind.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C6018EAF4AB004A25A1 /* rewind.png */; };
+		63C6EAA118F0D8290073BB6A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C6EAA018F0D8290073BB6A /* pause.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		63C15C5C18EAF0F4004A25A1 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		63C15C5E18EAF18D004A25A1 /* fastforward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fastforward.png; sourceTree = "<group>"; };
 		63C15C6018EAF4AB004A25A1 /* rewind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rewind.png; sourceTree = "<group>"; };
+		63C6EAA018F0D8290073BB6A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				635D066718D4C4A900CD8EE4 /* bv-lightning.jpg */,
 				63C15C5E18EAF18D004A25A1 /* fastforward.png */,
 				63C15C5A18EAF07F004A25A1 /* play.png */,
+				63C6EAA018F0D8290073BB6A /* pause.png */,
 				63C15C5C18EAF0F4004A25A1 /* stop.png */,
 				63C15C6018EAF4AB004A25A1 /* rewind.png */,
 			);
@@ -332,6 +335,7 @@
 				63C15C5D18EAF0F4004A25A1 /* stop.png in Resources */,
 				63C15C4618E289F5004A25A1 /* horizontalblackbg.png in Resources */,
 				635D064B18D29B4D00CD8EE4 /* Images.xcassets in Resources */,
+				63C6EAA118F0D8290073BB6A /* pause.png in Resources */,
 				635D067718D4D83700CD8EE4 /* settings.plist in Resources */,
 				63C15C4418E289AD004A25A1 /* horizontalblackbg@2x.png in Resources */,
 				63C15C5F18EAF18D004A25A1 /* fastforward.png in Resources */,

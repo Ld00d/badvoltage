@@ -33,10 +33,11 @@
 @implementation BVPodcastPlayer
 {
     id<BVPodcastPlayerDelegate> _delegate;
-    UIButton *_rewindButton;
-    UIButton *_stopButton;
-    UIButton *_playButton;
-    UIButton *_fastfwdButton;
+    BVButton *_rewindButton;
+    BVButton *_stopButton;
+    BVButton *_playButton;
+    BVButton *_pauseButton;
+    BVButton *_fastfwdButton;
     
     UIView *_buttonView;
     UITextView *_summaryView;
@@ -74,7 +75,7 @@
     
     _buttonView.frame = frame;
     
-    float x = (frame.size.width - ((BUTTON_W * 4) + (CTRLS_X_SPACING * 3))) / 2.0;
+    float x = (frame.size.width - ((BUTTON_W * 5) + (CTRLS_X_SPACING * 4))) / 2.0;
     float y = (_buttonView.frame.size.height - BUTTON_H ) / 2.0;
 
     btnFrame = CGRectMake(x, y, BUTTON_W, BUTTON_H);
@@ -83,6 +84,10 @@
     x = x + BUTTON_W + CTRLS_X_SPACING;
     btnFrame = CGRectMake(x, y, BUTTON_W, BUTTON_H);
     _stopButton.frame = btnFrame;
+    
+    x = x + BUTTON_W + CTRLS_X_SPACING;
+    btnFrame = CGRectMake(x, y, BUTTON_W, BUTTON_H);
+    _pauseButton.frame = btnFrame;
     
     x = x + BUTTON_W + CTRLS_X_SPACING;
     btnFrame = CGRectMake(x, y, BUTTON_W, BUTTON_H);
@@ -123,6 +128,8 @@
     _rewindButton = [self addButton:[UIImage imageNamed:@"rewind"] withCommand:[_delegate rewindCommand]];
     
     _stopButton = [self addButton:[UIImage imageNamed:@"stop"] withCommand:[_delegate stopCommand]];
+    
+    _pauseButton = [self addButton:[UIImage imageNamed:@"pause"] withCommand:[_delegate pauseCommand]];
     
     _playButton = [self addButton:[UIImage imageNamed:@"play"] withCommand:[_delegate playCommand]];
     

@@ -201,6 +201,7 @@ static void *currentItemContext = &currentItemContext;
     [[self rewindCommand] setCanPerformAction:NO];
     [[self stopCommand] setCanPerformAction:NO];
     [[self fastForwardCommand] setCanPerformAction:NO];
+    [[self pauseCommand] setCanPerformAction:NO];
     [_player seekToTime:kCMTimeZero];
     _isPlaying = NO;
 
@@ -224,20 +225,21 @@ static void *currentItemContext = &currentItemContext;
 
 - (void)playMedia
 {
-    
     @try {
         [_player play];
         _isPlaying = YES;
         [[self rewindCommand] setCanPerformAction:[_playerItem canPlayFastReverse]];
         [[self stopCommand] setCanPerformAction:YES];
         [[self fastForwardCommand] setCanPerformAction:[_playerItem canPlayFastForward]];
-        
+        [[self pauseCommand] setCanPerformAction:YES];
+        [[self playCommand] setCanPerformAction:NO];
     }
     @catch (NSException *exception) {
         NSLog(@"Problem playing audio: %@", exception.reason);
     }    
     
 }
+
 
 
 #pragma mark - BVPodcastPlayerDelegate
@@ -252,7 +254,7 @@ static void *currentItemContext = &currentItemContext;
 {
     return [self command:@"rewindCommand"
                   action:^(id sender) {
-        [_player setRate:-1.0];
+                      [_player setRate:-1.0];
                   }
               canPerform:NO];
 }
@@ -281,7 +283,9 @@ static void *currentItemContext = &currentItemContext;
 {
     return [self command:@"pauseCommand"
                   action:^(id sender) {
-                    [_player pause];
+                      [_player pause];
+                      [[self playCommand] setCanPerformAction:YES];
+                      [[self pauseCommand] setCanPerformAction:NO];
                   }
               canPerform:NO];
 }
@@ -293,7 +297,7 @@ static void *currentItemContext = &currentItemContext;
                       [_player setRate:2.0];
                   }
               canPerform:NO];
-
+    
 }
 
 
