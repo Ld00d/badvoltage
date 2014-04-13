@@ -25,7 +25,7 @@
 
 @class BVPodcastMedia;
 
-@interface BVPodcastEpisode : NSObject
+@interface BVPodcastEpisode : NSObject<NSCoding>
 
 @property(nonatomic, strong) NSString *title;
 @property(nonatomic, strong) NSString *subtitle;

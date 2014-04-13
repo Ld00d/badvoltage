@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class BVCommand;
 
 @interface BVViewController : UIViewController
 
-- (BVCommand *)command:(NSString *)name
-                action:(void(^)(id))action
-       canPerform:(BOOL)canPerform;
 
 @end

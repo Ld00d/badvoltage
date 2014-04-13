@@ -24,10 +24,9 @@
 
 
 #import "BVPodcastPlayerViewController.h"
-#import "BVPodcastPlayer.h"
 #import "BVPodcastEpisode.h"
 #import "BVPodcastMedia.h"
-#import "BVCommand.h"
+#import "BVImages.h"
 #import <AVFoundation/AVFoundation.h>
 
 
@@ -56,9 +55,10 @@ static void *currentItemContext = &currentItemContext;
     return _episode;
 }
 
+
 - (id)initWithPodcastEpisode:(BVPodcastEpisode *)e playbackEnabled:(BOOL)enabled
 {
-    self = [super init];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _episode = e;
         self.title = _episode.title;
@@ -68,15 +68,26 @@ static void *currentItemContext = &currentItemContext;
     return self;
 }
 
-- (void)loadView
-{
-    BVPodcastPlayer *player = [[BVPodcastPlayer alloc] initWithDelegate:self];
-    self.view = player;
-    
-}
+
 
 - (void)viewDidLoad
 {
+    UIImage *bgImage = [BVImages imageNamed:@"bv-lightning.jpg"];
+    UIImageView *imgVw = [[UIImageView alloc] initWithImage:bgImage];
+    [self.view addSubview:imgVw];
+    [self.view sendSubviewToBack:imgVw];
+    
+    [self.summaryView setText:self.episode.summary];
+    self.summaryView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:.3];
+    [self.summaryView setTextColor:[UIColor whiteColor]];
+    [self.summaryView setTextContainerInset:UIEdgeInsetsMake(5, 10, 5, 10)];
+    
+    self.rewindButton.enabled = NO;
+    self.stopButton.enabled = NO;
+    self.pauseButton.enabled = NO;
+    self.playButton.enabled = NO;
+    self.fastforwardButton.enabled = NO;
+    
     if (_playbackEnabled) {
         NSURL *mediaUrl = [NSURL URLWithString:[[_episode media] url]];
         
@@ -88,6 +99,7 @@ static void *currentItemContext = &currentItemContext;
         
         NSArray *requestedKeys = @[@"tracks", @"playable"];
         
+        __weak BVPodcastPlayerViewController *viewController = self;
         
         /* Tells the asset to load the values of any of the specified keys that are not already loaded. */
         [asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:
@@ -95,7 +107,7 @@ static void *currentItemContext = &currentItemContext;
              dispatch_async( dispatch_get_main_queue(),
                             ^{
                                 /* IMPORTANT: Must dispatch to main queue in order to operate on the AVPlayer and AVPlayerItem. */
-                                [self prepareToPlayAsset:asset withKeys:requestedKeys];
+                                [viewController prepareToPlayAsset:asset withKeys:requestedKeys];
                             });
          }];
     }
@@ -103,10 +115,16 @@ static void *currentItemContext = &currentItemContext;
     [super viewDidLoad];
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSString *)restorationIdentifier
+{
+    return [NSString stringWithFormat:@"BVPodcastPlayerViewController::%@", _episode.title];
 }
 
 - (void)prepareToPlayAsset:(AVURLAsset*)asset withKeys:(NSArray*)requestedKeys
@@ -140,12 +158,7 @@ static void *currentItemContext = &currentItemContext;
         return;
     }
     
-    if (_playerItem != nil) {
-        [_playerItem removeObserver:self forKeyPath:@"status"];
-        
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_playerItem];
-        
-    }
+    [self removePlayerItemObserver];
     
     _playerItem = [AVPlayerItem playerItemWithAsset:asset];
     
@@ -177,7 +190,7 @@ static void *currentItemContext = &currentItemContext;
                 
                 break;
             case AVPlayerStatusReadyToPlay:
-                [[self playCommand] setCanPerformAction:YES];
+                self.playButton.enabled = YES;
                 break;
             case AVPlayerStatusFailed:
                 
@@ -196,12 +209,38 @@ static void *currentItemContext = &currentItemContext;
 
 }
 
+- (void)clearObservers
+{
+    [self removePlayerItemObserver];
+    [self removePlayerObserver];
+
+}
+
+- (void)removePlayerItemObserver
+{
+    if (_playerItem != nil) {
+        [_playerItem removeObserver:self forKeyPath:@"status"];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_playerItem];
+    }
+}
+
+- (void)removePlayerObserver
+{
+    if (_player != nil) {
+        [_player removeObserver:self forKeyPath:@"currentItem"];
+        [_player removeObserver:self forKeyPath:@"rate"];
+    }
+}
+
 - (void)playerItemDidReachEnd:(NSNotification *)notification
 {
-    [[self rewindCommand] setCanPerformAction:NO];
-    [[self stopCommand] setCanPerformAction:NO];
-    [[self fastForwardCommand] setCanPerformAction:NO];
-    [[self pauseCommand] setCanPerformAction:NO];
+    self.rewindButton.enabled = NO;
+    self.stopButton.enabled = NO;
+    self.pauseButton.enabled = NO;
+    self.playButton.enabled = YES;
+    self.fastforwardButton.enabled = NO;
+    
     [_player seekToTime:kCMTimeZero];
     _isPlaying = NO;
 
@@ -228,11 +267,11 @@ static void *currentItemContext = &currentItemContext;
     @try {
         [_player play];
         _isPlaying = YES;
-        [[self rewindCommand] setCanPerformAction:[_playerItem canPlayFastReverse]];
-        [[self stopCommand] setCanPerformAction:YES];
-        [[self fastForwardCommand] setCanPerformAction:[_playerItem canPlayFastForward]];
-        [[self pauseCommand] setCanPerformAction:YES];
-        [[self playCommand] setCanPerformAction:NO];
+        self.rewindButton.enabled = _playerItem.canPlayFastReverse;
+        self.stopButton.enabled = YES;
+        self.fastforwardButton.enabled = _playerItem.canPlayFastForward;
+        self.pauseButton.enabled = YES;
+        self.playButton.enabled = NO;
     }
     @catch (NSException *exception) {
         NSLog(@"Problem playing audio: %@", exception.reason);
@@ -250,56 +289,54 @@ static void *currentItemContext = &currentItemContext;
 }
 
 
-- (BVCommand *)rewindCommand
+
+
+- (IBAction)rewind:(id)sender
 {
-    return [self command:@"rewindCommand"
-                  action:^(id sender) {
-                      [_player setRate:-1.0];
-                  }
-              canPerform:NO];
+    [_player setRate:-1.0];
 }
 
-- (BVCommand *)stopCommand
+
+- (IBAction)stop:(id)sender
 {
-    return [self command:@"stopCommand"
-                  action:^(id sender) {
-                      [_player pause];
-                      [_player seekToTime:kCMTimeZero];
-                      _isPlaying = NO;
-                  }
-              canPerform:NO];
+    [_player pause];
+    [_player seekToTime:kCMTimeZero];
+    _isPlaying = NO;
+    self.playButton.enabled = YES;
+    self.pauseButton.enabled = NO;
 }
 
-- (BVCommand *)playCommand
+
+- (IBAction)play:(id)sender
 {
-    return [self command:@"playCommand"
-                  action:^(id sender) {
-                      [self playMedia];
-                  }
-              canPerform:NO];
+    [self playMedia];
 }
 
-- (BVCommand *)pauseCommand
+
+- (IBAction)pause:(id)sender
 {
-    return [self command:@"pauseCommand"
-                  action:^(id sender) {
-                      [_player pause];
-                      [[self playCommand] setCanPerformAction:YES];
-                      [[self pauseCommand] setCanPerformAction:NO];
-                  }
-              canPerform:NO];
+    [_player pause];
+    self.playButton.enabled = YES;
+    self.pauseButton.enabled = NO;
 }
 
-- (BVCommand *)fastForwardCommand
+
+- (IBAction)fastforward:(id)sender
 {
-    return [self command:@"fastForwardCommand"
-                  action:^(id sender) {
-                      [_player setRate:2.0];
-                  }
-              canPerform:NO];
+    [_player setRate:2.0];
+}
+
+
+- (void)dealloc
+{
+    NSLog(@"BVPodcastPlayerViewController dealloc");
+    [self clearObservers];
     
+    
+    _episode = nil;
+    _player = nil;
+    _playerItem = nil;
 }
-
 
 
 @end

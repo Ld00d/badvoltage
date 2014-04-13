@@ -20,16 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
 
-
 #import <Foundation/Foundation.h>
 
-@interface BVCommand : NSObject
+@interface BVImages : NSObject
 
-@property (nonatomic) BOOL canPerformAction;
++ (UIImage *)imageNamed:(NSString *)name;
 
-- (IBAction)performAction:(id)sender;
-
-- (id)initWithAction:(void(^)(id))action canPerform:(BOOL)canPerform;
-
++ (void)clear;
 
 @end

@@ -23,7 +23,26 @@
 
 #import "BVPodcastMedia.h"
 
+NSString * const kUrl = @"url";
+NSString * const kLength = @"length";
+
 @implementation BVPodcastMedia
 @synthesize url, length;
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.url = [aDecoder decodeObjectForKey:kUrl];
+        self.length = [aDecoder decodeIntegerForKey:kLength];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:url forKey:kUrl];
+    [aCoder encodeInteger:length forKey:kLength];
+}
 
 @end

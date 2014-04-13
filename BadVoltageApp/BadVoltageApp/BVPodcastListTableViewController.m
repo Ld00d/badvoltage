@@ -26,14 +26,13 @@
 #import "BVPodcastEpisode.h"
 #import "BVSettingsRepository.h"
 #import "BVPodcastPlayerViewController.h"
+#import "BVImages.h"
 
 @interface BVPodcastListTableViewController ()
 
 @end
 
 static NSInteger _feedBatchSz;
-static UIImage *_logoImage;
-static UIImage *_bgImage;
 
 @implementation BVPodcastListTableViewController
 {
@@ -48,9 +47,6 @@ static UIImage *_bgImage;
 {
     NSNumber *feedBatchSz = [BVSettingsRepository getSettingForKey:@"BV_FEED_FETCH_SZ"];
     _feedBatchSz = [feedBatchSz integerValue];
-    _logoImage = [UIImage imageNamed:@"horizontalblackbg"];
-    _bgImage = [UIImage imageNamed:@"bv-lightning.jpg"];
-    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -74,17 +70,17 @@ static UIImage *_bgImage;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
     
-    UIImageView *logoView = [[UIImageView alloc] initWithImage:_logoImage];
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[BVImages imageNamed:@"horizontalblackbg"]];
     logoView.contentMode = UIViewContentModeScaleAspectFit;
     logoView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
     self.navigationItem.titleView = logoView;
     
-    UIImageView *imgVw = [[UIImageView alloc] initWithImage:_bgImage];
+    UIImageView *imgVw = [[UIImageView alloc] initWithImage:[BVImages imageNamed:@"bv-lightning.jpg"]];
     imgVw.contentMode = UIViewContentModeTopLeft;
     self.tableView.backgroundView = imgVw;
     
-    _nowPlayingButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(nowPlayingTouched:)];
+    _nowPlayingButton = [[UIBarButtonItem alloc] initWithImage:[BVImages imageNamed:@"play"] style:UIBarButtonItemStylePlain target:self action:@selector(nowPlayingTouched:)];
     
     
     self.navigationItem.rightBarButtonItem = _nowPlayingButton;
@@ -107,10 +103,18 @@ static UIImage *_bgImage;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (_selected != nil && _selected.isPlaying) {
-        _nowPlaying = _selected;
-        _nowPlayingButton.enabled = YES;
+    if (_selected != nil ) {
+        if (_selected.isPlaying) {
+            _nowPlaying = _selected;
+            _nowPlayingButton.enabled = YES;
+        } else {
+            _nowPlaying = nil;
+            _nowPlayingButton.enabled = NO;
+        }
+        
     }
+    
+    _selected = nil;
     
     [super viewWillAppear:animated];
 }
@@ -125,6 +129,11 @@ static UIImage *_bgImage;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSString *)restorationIdentifier
+{
+    return @"BVPodcastListTableViewController";
 }
 
 #pragma mark - Table view data source

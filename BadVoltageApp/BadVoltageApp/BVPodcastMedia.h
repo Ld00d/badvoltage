@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BVPodcastMedia : NSObject
+@interface BVPodcastMedia : NSObject<NSCoding>
 
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic) NSInteger length;

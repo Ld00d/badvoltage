@@ -27,12 +27,9 @@
 		635D067A18D4DB0100CD8EE4 /* BVFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D067918D4DB0100CD8EE4 /* BVFeedParser.m */; };
 		635D067D18D5063400CD8EE4 /* BVPodcastListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D067C18D5063400CD8EE4 /* BVPodcastListTableViewController.m */; };
 		635D068018D7223000CD8EE4 /* BVSettingsRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D067F18D7223000CD8EE4 /* BVSettingsRepository.m */; };
-		635D068318D93BD700CD8EE4 /* BVPodcastPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068218D93BD700CD8EE4 /* BVPodcastPlayer.m */; };
 		635D068618D93BF600CD8EE4 /* BVPodcastPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068518D93BF600CD8EE4 /* BVPodcastPlayerViewController.m */; };
 		635D068818D941C200CD8EE4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D068718D941C200CD8EE4 /* AVFoundation.framework */; };
-		635D068B18DE8FF800CD8EE4 /* BVCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068A18DE8FF800CD8EE4 /* BVCommand.m */; };
 		635D068E18DE94AE00CD8EE4 /* BVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068D18DE94AE00CD8EE4 /* BVViewController.m */; };
-		635D069118DE98E200CD8EE4 /* BVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D069018DE98E200CD8EE4 /* BVButton.m */; };
 		63C15C4418E289AD004A25A1 /* horizontalblackbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C4318E289AD004A25A1 /* horizontalblackbg@2x.png */; };
 		63C15C4618E289F5004A25A1 /* horizontalblackbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C4518E289F5004A25A1 /* horizontalblackbg.png */; };
 		63C15C5B18EAF07F004A25A1 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C5A18EAF07F004A25A1 /* play.png */; };
@@ -40,6 +37,8 @@
 		63C15C5F18EAF18D004A25A1 /* fastforward.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C5E18EAF18D004A25A1 /* fastforward.png */; };
 		63C15C6118EAF4AB004A25A1 /* rewind.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C6018EAF4AB004A25A1 /* rewind.png */; };
 		63C6EAA118F0D8290073BB6A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C6EAA018F0D8290073BB6A /* pause.png */; };
+		63C6EAA418F9ABB00073BB6A /* BVImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C6EAA318F9ABB00073BB6A /* BVImages.m */; };
+		63C6EAA918F9F88F0073BB6A /* BVPodcastPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63C6EAA818F9F88F0073BB6A /* BVPodcastPlayerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,17 +82,11 @@
 		635D067C18D5063400CD8EE4 /* BVPodcastListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastListTableViewController.m; sourceTree = "<group>"; };
 		635D067E18D7223000CD8EE4 /* BVSettingsRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVSettingsRepository.h; sourceTree = "<group>"; };
 		635D067F18D7223000CD8EE4 /* BVSettingsRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVSettingsRepository.m; sourceTree = "<group>"; };
-		635D068118D93BD700CD8EE4 /* BVPodcastPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastPlayer.h; sourceTree = "<group>"; };
-		635D068218D93BD700CD8EE4 /* BVPodcastPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastPlayer.m; sourceTree = "<group>"; };
 		635D068418D93BF600CD8EE4 /* BVPodcastPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastPlayerViewController.h; sourceTree = "<group>"; };
 		635D068518D93BF600CD8EE4 /* BVPodcastPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastPlayerViewController.m; sourceTree = "<group>"; };
 		635D068718D941C200CD8EE4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		635D068918DE8FF800CD8EE4 /* BVCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVCommand.h; sourceTree = "<group>"; };
-		635D068A18DE8FF800CD8EE4 /* BVCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVCommand.m; sourceTree = "<group>"; };
 		635D068C18DE94AE00CD8EE4 /* BVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVViewController.h; sourceTree = "<group>"; };
 		635D068D18DE94AE00CD8EE4 /* BVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVViewController.m; sourceTree = "<group>"; };
-		635D068F18DE98E200CD8EE4 /* BVButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVButton.h; sourceTree = "<group>"; };
-		635D069018DE98E200CD8EE4 /* BVButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVButton.m; sourceTree = "<group>"; };
 		63C15C4318E289AD004A25A1 /* horizontalblackbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "horizontalblackbg@2x.png"; sourceTree = "<group>"; };
 		63C15C4518E289F5004A25A1 /* horizontalblackbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horizontalblackbg.png; sourceTree = "<group>"; };
 		63C15C5A18EAF07F004A25A1 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
@@ -101,6 +94,9 @@
 		63C15C5E18EAF18D004A25A1 /* fastforward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fastforward.png; sourceTree = "<group>"; };
 		63C15C6018EAF4AB004A25A1 /* rewind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rewind.png; sourceTree = "<group>"; };
 		63C6EAA018F0D8290073BB6A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		63C6EAA218F9ABB00073BB6A /* BVImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVImages.h; sourceTree = "<group>"; };
+		63C6EAA318F9ABB00073BB6A /* BVImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVImages.m; sourceTree = "<group>"; };
+		63C6EAA818F9F88F0073BB6A /* BVPodcastPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BVPodcastPlayerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,25 +158,20 @@
 		635D063518D29B4D00CD8EE4 /* BadVoltageApp */ = {
 			isa = PBXGroup;
 			children = (
-				63C15C4718E28C34004A25A1 /* Controls */,
 				635D063E18D29B4D00CD8EE4 /* BVAppDelegate.h */,
 				635D063F18D29B4D00CD8EE4 /* BVAppDelegate.m */,
 				635D067B18D5063400CD8EE4 /* BVPodcastListTableViewController.h */,
 				635D067C18D5063400CD8EE4 /* BVPodcastListTableViewController.m */,
-				635D068118D93BD700CD8EE4 /* BVPodcastPlayer.h */,
-				635D068218D93BD700CD8EE4 /* BVPodcastPlayer.m */,
 				635D068418D93BF600CD8EE4 /* BVPodcastPlayerViewController.h */,
 				635D068518D93BF600CD8EE4 /* BVPodcastPlayerViewController.m */,
+				63C6EAA818F9F88F0073BB6A /* BVPodcastPlayerViewController.xib */,
+				635D068C18DE94AE00CD8EE4 /* BVViewController.h */,
+				635D068D18DE94AE00CD8EE4 /* BVViewController.m */,
+				63C15C4718E28C34004A25A1 /* Controls */,
 				635D064A18D29B4D00CD8EE4 /* Images.xcassets */,
 				635D066A18D4C58E00CD8EE4 /* Model */,
 				635D066918D4C55700CD8EE4 /* Resources */,
 				635D063618D29B4D00CD8EE4 /* Supporting Files */,
-				635D068918DE8FF800CD8EE4 /* BVCommand.h */,
-				635D068A18DE8FF800CD8EE4 /* BVCommand.m */,
-				635D068C18DE94AE00CD8EE4 /* BVViewController.h */,
-				635D068D18DE94AE00CD8EE4 /* BVViewController.m */,
-				635D068F18DE98E200CD8EE4 /* BVButton.h */,
-				635D069018DE98E200CD8EE4 /* BVButton.m */,
 			);
 			path = BadVoltageApp;
 			sourceTree = "<group>";
@@ -226,6 +217,8 @@
 				63C6EAA018F0D8290073BB6A /* pause.png */,
 				63C15C5C18EAF0F4004A25A1 /* stop.png */,
 				63C15C6018EAF4AB004A25A1 /* rewind.png */,
+				63C6EAA218F9ABB00073BB6A /* BVImages.h */,
+				63C6EAA318F9ABB00073BB6A /* BVImages.m */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -339,6 +332,7 @@
 				635D067718D4D83700CD8EE4 /* settings.plist in Resources */,
 				63C15C4418E289AD004A25A1 /* horizontalblackbg@2x.png in Resources */,
 				63C15C5F18EAF18D004A25A1 /* fastforward.png in Resources */,
+				63C6EAA918F9F88F0073BB6A /* BVPodcastPlayerViewController.xib in Resources */,
 				635D066818D4C4A900CD8EE4 /* bv-lightning.jpg in Resources */,
 				63C15C6118EAF4AB004A25A1 /* rewind.png in Resources */,
 				635D063A18D29B4D00CD8EE4 /* InfoPlist.strings in Resources */,
@@ -362,16 +356,14 @@
 			files = (
 				635D068E18DE94AE00CD8EE4 /* BVViewController.m in Sources */,
 				635D064018D29B4D00CD8EE4 /* BVAppDelegate.m in Sources */,
-				635D068B18DE8FF800CD8EE4 /* BVCommand.m in Sources */,
 				635D067318D4C99600CD8EE4 /* BVPodcastRepository.m in Sources */,
 				635D068618D93BF600CD8EE4 /* BVPodcastPlayerViewController.m in Sources */,
 				635D068018D7223000CD8EE4 /* BVSettingsRepository.m in Sources */,
 				635D067A18D4DB0100CD8EE4 /* BVFeedParser.m in Sources */,
 				635D067018D4C7AE00CD8EE4 /* BVPodcastMedia.m in Sources */,
-				635D068318D93BD700CD8EE4 /* BVPodcastPlayer.m in Sources */,
 				635D067D18D5063400CD8EE4 /* BVPodcastListTableViewController.m in Sources */,
 				635D063C18D29B4D00CD8EE4 /* main.m in Sources */,
-				635D069118DE98E200CD8EE4 /* BVButton.m in Sources */,
+				63C6EAA418F9ABB00073BB6A /* BVImages.m in Sources */,
 				635D066D18D4C5C200CD8EE4 /* BVPodcastEpisode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

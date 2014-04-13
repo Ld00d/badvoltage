@@ -23,7 +23,37 @@
 
 #import "BVPodcastEpisode.h"
 
+NSString * const kTitle = @"title";
+NSString * const kSubtitle = @"subtitle";
+NSString * const kSummary = @"summary";
+NSString * const kPubDate = @"pubDate";
+NSString * const kMedia = @"media";
+
+
 @implementation BVPodcastEpisode
 @synthesize title, subtitle, summary, pubDate, media;
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.title = [aDecoder decodeObjectForKey:kTitle];
+        self.subtitle = [aDecoder decodeObjectForKey:kSubtitle];
+        self.summary = [aDecoder decodeObjectForKey:kSummary];
+        self.pubDate = [aDecoder decodeObjectForKey:kPubDate];
+        self.media = [aDecoder decodeObjectForKey:kMedia];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:title forKey:kTitle];
+    [aCoder encodeObject:subtitle forKey:kSubtitle];
+    [aCoder encodeObject:summary forKey:kSummary];
+    [aCoder encodeObject:pubDate forKey:kPubDate];
+    [aCoder encodeObject:media forKey:kMedia];
+
+}
 
 @end

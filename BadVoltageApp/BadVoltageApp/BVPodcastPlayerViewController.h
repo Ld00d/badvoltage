@@ -22,15 +22,30 @@
 
 
 #import <UIKit/UIKit.h>
-#import "BVPodcastPlayer.h"
 #import "BVViewController.h"
 
 @class BVPodcastEpisode;
 
-@interface BVPodcastPlayerViewController : BVViewController<BVPodcastPlayerDelegate>
+@interface BVPodcastPlayerViewController : BVViewController<UITextViewDelegate>
+{
+
+}
 
 @property (nonatomic, strong, readonly) BVPodcastEpisode *episode;
 @property (nonatomic, readonly) BOOL isPlaying;
+
+@property (weak, nonatomic) IBOutlet UITextView *summaryView;
+@property (weak, nonatomic) IBOutlet UIButton *rewindButton;
+@property (weak, nonatomic) IBOutlet UIButton *stopButton;
+@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *fastforwardButton;
+
+- (IBAction)rewind:(id)sender;
+- (IBAction)stop:(id)sender;
+- (IBAction)pause:(id)sender;
+- (IBAction)play:(id)sender;
+- (IBAction)fastforward:(id)sender;
 
 - (id)initWithPodcastEpisode:(BVPodcastEpisode *)episode playbackEnabled:(BOOL)enabled;
 

@@ -20,29 +20,33 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
 
+#import "BVImages.h"
 
-#import "BVCommand.h"
+static NSMutableDictionary* _images;
 
-@implementation BVCommand
+@implementation BVImages
+
++ (void)initialize
 {
-    void(^_action)(id);
-   
+    _images = [[NSMutableDictionary alloc] init];
 }
-@synthesize canPerformAction;
 
-- (id)initWithAction:(void (^)(id))action canPerform:(BOOL)canPerform
++ (UIImage *)imageNamed:(NSString *)name
 {
-    self = [super init];
-    if (self) {
-        _action = action;
-        self.canPerformAction = canPerform;
+    UIImage *image = nil;
+    
+    if (!(image = [_images objectForKey:name])) {
+        image = [UIImage imageNamed:name];
+        if (image != nil) {
+            [_images setObject:image forKey:name];
+        }
     }
-    return self;
+    return image;
 }
 
-- (void)performAction:(id)sender
++ (void)clear
 {
-    _action(sender);
+    [_images removeAllObjects];
 }
 
 @end

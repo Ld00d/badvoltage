@@ -24,6 +24,7 @@
 #import "BVAppDelegate.h"
 #import "BVPodcastListTableViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "BVImages.h"
 
 @implementation BVAppDelegate
 
@@ -80,5 +81,23 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    [BVImages clear];
+}
+
+
+
+- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
+{
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
+{
+    return YES;
+}
+
 
 @end
