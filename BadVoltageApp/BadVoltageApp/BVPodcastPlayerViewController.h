@@ -40,12 +40,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *fastforwardButton;
+@property (weak, nonatomic) IBOutlet UISlider *scrubber;
 
 - (IBAction)rewind:(id)sender;
 - (IBAction)stop:(id)sender;
 - (IBAction)pause:(id)sender;
 - (IBAction)play:(id)sender;
 - (IBAction)fastforward:(id)sender;
+- (IBAction)scrub:(id)sender;
+- (IBAction)beginScrubbing:(id)sender;
+- (IBAction)endScrubbing:(id)sender;
 
 - (id)initWithPodcastEpisode:(BVPodcastEpisode *)episode playbackEnabled:(BOOL)enabled;
 

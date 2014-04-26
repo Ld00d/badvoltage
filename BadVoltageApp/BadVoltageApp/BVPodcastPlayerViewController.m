@@ -34,6 +34,10 @@ static void *statusContext = &statusContext;
 static void *rateContext = &rateContext;
 static void *currentItemContext = &currentItemContext;
 
+@interface BVPodcastPlayerViewController()
+- (void)syncScrubber;
+
+@end
 
 
 @implementation BVPodcastPlayerViewController
@@ -41,6 +45,9 @@ static void *currentItemContext = &currentItemContext;
     BVPodcastEpisode * _episode;
     AVPlayer *_player;
     AVPlayerItem *_playerItem;
+    id _timeObserver;
+    float _rateToRestore;
+    double _duration;
     BOOL _playbackEnabled;
     BOOL _isPlaying;
 }
@@ -64,6 +71,8 @@ static void *currentItemContext = &currentItemContext;
         self.title = _episode.title;
         _playbackEnabled = enabled;
         _isPlaying = NO;
+        _duration = 0.0f;
+        _rateToRestore = 0.0f;
     }
     return self;
 }
@@ -78,15 +87,13 @@ static void *currentItemContext = &currentItemContext;
     [self.view sendSubviewToBack:imgVw];
     
     [self.summaryView setText:self.episode.summary];
-    self.summaryView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:.3];
-    [self.summaryView setTextColor:[UIColor whiteColor]];
+    
     [self.summaryView setTextContainerInset:UIEdgeInsetsMake(5, 10, 5, 10)];
     
-    self.rewindButton.enabled = NO;
-    self.stopButton.enabled = NO;
-    self.pauseButton.enabled = NO;
-    self.playButton.enabled = NO;
-    self.fastforwardButton.enabled = NO;
+    
+    [self.scrubber setValue:0.0];
+    [self.scrubber setEnabled:NO];
+    [self.scrubber setThumbImage:[BVImages imageNamed:@"thumb"] forState:UIControlStateNormal];
     
     if (_playbackEnabled) {
         NSURL *mediaUrl = [NSURL URLWithString:[[_episode media] url]];
@@ -99,15 +106,13 @@ static void *currentItemContext = &currentItemContext;
         
         NSArray *requestedKeys = @[@"tracks", @"playable"];
         
-        __weak BVPodcastPlayerViewController *viewController = self;
-        
         /* Tells the asset to load the values of any of the specified keys that are not already loaded. */
         [asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:
          ^{
              dispatch_async( dispatch_get_main_queue(),
                             ^{
                                 /* IMPORTANT: Must dispatch to main queue in order to operate on the AVPlayer and AVPlayerItem. */
-                                [viewController prepareToPlayAsset:asset withKeys:requestedKeys];
+                                [self prepareToPlayAsset:asset withKeys:requestedKeys];
                             });
          }];
     }
@@ -191,6 +196,8 @@ static void *currentItemContext = &currentItemContext;
                 break;
             case AVPlayerStatusReadyToPlay:
                 self.playButton.enabled = YES;
+                [self initScrubber];
+                
                 break;
             case AVPlayerStatusFailed:
                 
@@ -209,11 +216,21 @@ static void *currentItemContext = &currentItemContext;
 
 }
 
+
+
 - (void)clearObservers
 {
+    [self removeTimeObserver];
     [self removePlayerItemObserver];
     [self removePlayerObserver];
+}
 
+- (void)removeTimeObserver
+{
+    if (_timeObserver != nil) {
+        [_player removeTimeObserver:_timeObserver];
+    }
+    _timeObserver = nil;
 }
 
 - (void)removePlayerItemObserver
@@ -280,16 +297,91 @@ static void *currentItemContext = &currentItemContext;
 }
 
 
-
-#pragma mark - BVPodcastPlayerDelegate
-
 - (NSString *)podcastEpisodeSummary
 {
     return [_episode summary];
 }
 
+#pragma mark scrubber
+
+- (void)initScrubber
+{
+    CMTime playerDuration = [_playerItem duration];
+    
+    if (CMTIME_IS_INVALID(playerDuration)) {
+        NSLog(@"Invalid player item duration");
+        
+    } else {
+        self.scrubber.enabled = YES;
+        _duration = CMTimeGetSeconds(playerDuration);
+        [self initScrubberTimer];
+    }
+    
+}
+
+- (void)initScrubberTimer
+{
+    double interval = 0.1f;
+    
+    if (isfinite(_duration)) {
+        CGFloat width = CGRectGetWidth(self.scrubber.bounds);
+        interval = 0.5f * _duration / width;
+    }
+    __weak BVPodcastPlayerViewController *welf = self;
+    _timeObserver = [_player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(interval, NSEC_PER_SEC)
+                                                          queue:NULL
+                                                     usingBlock:^(CMTime time) {
+                                                         [welf syncScrubber];
+                                                     }];
+
+}
+
+- (void)syncScrubber
+{
+    float minValue = self.scrubber.minimumValue;
+    float maxValue = self.scrubber.maximumValue;
+    
+    double time = CMTimeGetSeconds(_player.currentTime);
+    
+    self.scrubber.value = (maxValue - minValue) * time / _duration + minValue;
+}
 
 
+- (IBAction)beginScrubbing:(id)sender
+{
+    _rateToRestore = [_player rate];
+    _player.rate = 0.0f;
+    
+    [self removeTimeObserver];
+}
+
+- (IBAction)scrub:(id)sender
+{
+    if (isfinite(_duration)) {
+        float minValue = _scrubber.minimumValue;
+        float maxValue = _scrubber.maximumValue;
+        float value = _scrubber.value;
+        
+        double time = _duration * (value - minValue) / (maxValue - minValue);
+        
+        [_player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
+    }
+    
+    
+}
+
+
+- (IBAction)endScrubbing:(id)sender
+{
+    [self initScrubberTimer];
+    if (_rateToRestore) {
+        _player.rate = _rateToRestore;
+        _rateToRestore = 0.0f;
+    }
+
+}
+
+#pragma mark actions
 
 - (IBAction)rewind:(id)sender
 {
@@ -326,16 +418,17 @@ static void *currentItemContext = &currentItemContext;
     [_player setRate:2.0];
 }
 
+#pragma mark -
 
 - (void)dealloc
 {
     NSLog(@"BVPodcastPlayerViewController dealloc");
     [self clearObservers];
     
-    
     _episode = nil;
     _player = nil;
     _playerItem = nil;
+    _timeObserver = nil;
 }
 
 

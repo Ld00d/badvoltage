@@ -161,7 +161,7 @@ static NSInteger _feedBatchSz;
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:cellIdentifier];
         cell.contentView.backgroundColor = [UIColor clearColor];
-        cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.05];
         cell.textLabel.textColor = [UIColor whiteColor];
     }
     
