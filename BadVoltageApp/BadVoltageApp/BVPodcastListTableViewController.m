@@ -80,7 +80,7 @@ static NSInteger _feedBatchSz;
     imgVw.contentMode = UIViewContentModeTopLeft;
     self.tableView.backgroundView = imgVw;
     
-    _nowPlayingButton = [[UIBarButtonItem alloc] initWithImage:[BVImages imageNamed:@"play"] style:UIBarButtonItemStylePlain target:self action:@selector(nowPlayingTouched:)];
+    _nowPlayingButton = [[UIBarButtonItem alloc] initWithImage:[BVImages imageNamed:@"next"] style:UIBarButtonItemStylePlain target:self action:@selector(nowPlayingTouched:)];
     
     
     self.navigationItem.rightBarButtonItem = _nowPlayingButton;
@@ -103,7 +103,7 @@ static NSInteger _feedBatchSz;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (_selected != nil ) {
+    if (_nowPlaying == nil && _selected != nil ) {
         if (_selected.isPlaying) {
             _nowPlaying = _selected;
             _nowPlayingButton.enabled = YES;

@@ -40,6 +40,7 @@
 		63C6EAA418F9ABB00073BB6A /* BVImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C6EAA318F9ABB00073BB6A /* BVImages.m */; };
 		63C6EAA918F9F88F0073BB6A /* BVPodcastPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63C6EAA818F9F88F0073BB6A /* BVPodcastPlayerViewController.xib */; };
 		63C6EAAB18FB1A0D0073BB6A /* thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C6EAAA18FB1A0D0073BB6A /* thumb.png */; };
+		63EE3ECD190C5449002E521B /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 63EE3ECC190C5449002E521B /* next.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		63C6EAA318F9ABB00073BB6A /* BVImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVImages.m; sourceTree = "<group>"; };
 		63C6EAA818F9F88F0073BB6A /* BVPodcastPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BVPodcastPlayerViewController.xib; sourceTree = "<group>"; };
 		63C6EAAA18FB1A0D0073BB6A /* thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb.png; sourceTree = "<group>"; };
+		63EE3ECC190C5449002E521B /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 				63C15C4318E289AD004A25A1 /* horizontalblackbg@2x.png */,
 				635D066718D4C4A900CD8EE4 /* bv-lightning.jpg */,
 				63C15C5E18EAF18D004A25A1 /* fastforward.png */,
+				63EE3ECC190C5449002E521B /* next.png */,
 				63C15C5A18EAF07F004A25A1 /* play.png */,
 				63C6EAA018F0D8290073BB6A /* pause.png */,
 				63C15C5C18EAF0F4004A25A1 /* stop.png */,
@@ -327,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63EE3ECD190C5449002E521B /* next.png in Resources */,
 				63C15C5B18EAF07F004A25A1 /* play.png in Resources */,
 				63C15C5D18EAF0F4004A25A1 /* stop.png in Resources */,
 				63C15C4618E289F5004A25A1 /* horizontalblackbg.png in Resources */,
