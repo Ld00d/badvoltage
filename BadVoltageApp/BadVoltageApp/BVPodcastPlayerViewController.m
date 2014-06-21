@@ -385,7 +385,13 @@ static void *currentItemContext = &currentItemContext;
 
 - (IBAction)rewind:(id)sender
 {
-    [_player setRate:-1.0];
+    if (_player.rate >  0.) {
+        _player.rate = -1.0;
+        self.playButton.enabled = YES;
+    } else {
+        _player.rate = 1.0;
+        self.playButton.enabled = NO;
+    }
 }
 
 
@@ -396,6 +402,7 @@ static void *currentItemContext = &currentItemContext;
     _isPlaying = NO;
     self.playButton.enabled = YES;
     self.pauseButton.enabled = NO;
+    self.stopButton.enabled = NO;
 }
 
 
@@ -415,7 +422,14 @@ static void *currentItemContext = &currentItemContext;
 
 - (IBAction)fastforward:(id)sender
 {
-    [_player setRate:2.0];
+    if (_player.rate < 16.0) {
+        _player.rate = _player.rate * 2.0;
+        self.playButton.enabled = YES;
+    } else {
+        _player.rate = 1.0;
+        self.playButton.enabled = NO;
+    }
+    
 }
 
 #pragma mark -

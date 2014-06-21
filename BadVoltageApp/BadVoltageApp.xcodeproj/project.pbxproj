@@ -301,6 +301,14 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "The Girls and Me";
 				TargetAttributes = {
+					635D062B18D29B4D00CD8EE4 = {
+						DevelopmentTeam = RV6866U63H;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					635D064F18D29B4D00CD8EE4 = {
 						TestTargetID = 635D062B18D29B4D00CD8EE4;
 					};
@@ -489,10 +497,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: brian Lampe (3N24HLFX23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: brian Lampe (3N24HLFX23)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BadVoltageApp/BadVoltageApp-Prefix.pch";
 				INFOPLIST_FILE = "BadVoltageApp/BadVoltageApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A3AC1189-B5E7-4B28-A81C-C808F07D0CDD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -502,10 +513,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: brian Lampe (3N24HLFX23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: brian Lampe (3N24HLFX23)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BadVoltageApp/BadVoltageApp-Prefix.pch";
 				INFOPLIST_FILE = "BadVoltageApp/BadVoltageApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A3AC1189-B5E7-4B28-A81C-C808F07D0CDD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

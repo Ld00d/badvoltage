@@ -49,12 +49,20 @@ static BVPodcastRepository *_podcastRepo;
 {
     self = [super init];
     if (self) {
-        _cache = [[NSMutableArray alloc] init];
+        //_cache = [[NSMutableArray alloc] init];
+        [self unarchiveEpisodes];
+        if (_cache == nil) {
+            _cache = [[NSMutableArray alloc] init];
+        }
         _feedUrl = [BVSettingsRepository getSettingForKey:@"BV_FEED_URL"];
     }
     return self;
 }
 
+- (void)refresh
+{
+
+}
 
 - (NSArray *)getEpisodesWithRange:(NSRange)range
 {
@@ -97,6 +105,37 @@ static BVPodcastRepository *_podcastRepo;
             [_cache addObject:[episodes objectAtIndex:j]];
         }
     }
+    
+    [self archiveEpisodes];
+}
+
+- (BOOL)archiveEpisodes
+{
+    BOOL success = NO;
+    
+    success = [NSKeyedArchiver archiveRootObject:_cache toFile:[self archiveFilePath]];
+    
+    return success;
+
+}
+
+- (void)unarchiveEpisodes
+{
+    _cache = [NSKeyedUnarchiver unarchiveObjectWithFile:[self archiveFilePath]];
+
+}
+
+- (NSString *)archiveFilePath
+{
+    NSString *filePath = nil;
+    
+    NSArray *docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docPath = [docPaths objectAtIndex:0];
+    
+    filePath = [docPath stringByAppendingPathComponent:@"archive.data"];
+    
+    return filePath;
+
 }
 
 

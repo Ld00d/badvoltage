@@ -31,5 +31,6 @@
 
 - (NSArray *)getEpisodesWithRange:(NSRange)range;
 
+- (void)refresh;
 
 @end

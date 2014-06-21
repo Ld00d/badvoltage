@@ -41,6 +41,7 @@ static NSInteger _feedBatchSz;
     BVPodcastPlayerViewController *_selected;
     BVPodcastPlayerViewController *_nowPlaying;
     UIBarButtonItem *_nowPlayingButton;
+    NSTimer *_refreshTimer;
 }
 
 + (void)initialize
@@ -55,7 +56,8 @@ static NSInteger _feedBatchSz;
     if (self) {
         _podcastRepo = [BVPodcastRepository podcastRepository];
         _selected = _nowPlaying = nil;
-        
+        //hard coded timer for 10800 seconds
+        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:10800 target:self selector:@selector(refreshEpisodes) userInfo:nil repeats:YES];
     }
     return self;
 }
@@ -80,6 +82,8 @@ static NSInteger _feedBatchSz;
     imgVw.contentMode = UIViewContentModeTopLeft;
     self.tableView.backgroundView = imgVw;
     
+    self.tableView.backgroundColor = [UIColor blackColor];
+    
     _nowPlayingButton = [[UIBarButtonItem alloc] initWithImage:[BVImages imageNamed:@"next"] style:UIBarButtonItemStylePlain target:self action:@selector(nowPlayingTouched:)];
     
     
@@ -87,12 +91,42 @@ static NSInteger _feedBatchSz;
     
     _nowPlayingButton.enabled = NO;
     
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    
+    [refreshControl addTarget:self action:@selector(refreshEpisodes:) forControlEvents:UIControlEventValueChanged];
+    
+    self.tableView.backgroundView.layer.zPosition = refreshControl.layer.zPosition -1;
+    
+    [self setRefreshControl:refreshControl];
+     
     NSRange range;
     range.length = _feedBatchSz;
     range.location = 0;
     _episodes = [_podcastRepo getEpisodesWithRange:range];
     
     
+}
+
+- (void)refreshEpisodes:(id)sender
+{
+    UIRefreshControl *refreshControl = sender;
+    
+    [self refreshEpisodes];
+    
+    [refreshControl endRefreshing];
+}
+
+- (void)refreshEpisodes
+{
+    [_podcastRepo refresh];
+    
+    NSRange range;
+    range.length = _feedBatchSz;
+    range.location = 0;
+    _episodes = [_podcastRepo getEpisodesWithRange:range];
+    
+    
+    [[self tableView] reloadData];
 }
 
 - (IBAction)nowPlayingTouched:(id)sender
@@ -103,15 +137,16 @@ static NSInteger _feedBatchSz;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (_nowPlaying == nil && _selected != nil ) {
-        if (_selected.isPlaying) {
-            _nowPlaying = _selected;
-            _nowPlayingButton.enabled = YES;
-        } else {
-            _nowPlaying = nil;
-            _nowPlayingButton.enabled = NO;
-        }
+    
+    if (_nowPlaying == nil && _selected != nil && _selected.isPlaying ) {
+        //nothing was playing, but now it is.
+        _nowPlaying = _selected;
+        _nowPlayingButton.enabled = YES;
         
+    } else if (_nowPlaying != nil && !_nowPlaying.isPlaying) {
+        //something was playing, but it's not anymore.
+        _nowPlaying = nil;
+        _nowPlayingButton.enabled = NO;
     }
     
     _selected = nil;
