@@ -35,6 +35,12 @@
     
     if (error) {
         NSLog(@"%@", error.localizedDescription);
+    } else {
+    
+        [[AVAudioSession sharedInstance] setActive:YES error:&error];
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
     }
     
     BVPodcastListTableViewController *podcastListVC = [[BVPodcastListTableViewController alloc] init];

@@ -20,38 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
 
-
 #import <UIKit/UIKit.h>
-#import "BVViewController.h"
 
-@class BVPodcastEpisode;
+@interface BVPodcastSummaryViewController : UIViewController<UIWebViewDelegate>
 
-@interface BVPodcastPlayerViewController : BVViewController<UITextViewDelegate, UIWebViewDelegate>
-{
+@property (weak, nonatomic) IBOutlet UIWebView *summaryView;
 
-}
-
-@property (nonatomic, strong, readonly) BVPodcastEpisode *episode;
-@property (nonatomic, readonly) BOOL isPlaying;
-
-@property (weak, nonatomic) IBOutlet UIView *summaryView;
-
-@property (weak, nonatomic) IBOutlet UIButton *rewindButton;
-@property (weak, nonatomic) IBOutlet UIButton *stopButton;
-@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIButton *fastforwardButton;
-@property (weak, nonatomic) IBOutlet UISlider *scrubber;
-
-- (IBAction)rewind:(id)sender;
-- (IBAction)stop:(id)sender;
-- (IBAction)pause:(id)sender;
-- (IBAction)play:(id)sender;
-- (IBAction)fastforward:(id)sender;
-- (IBAction)scrub:(id)sender;
-- (IBAction)beginScrubbing:(id)sender;
-- (IBAction)endScrubbing:(id)sender;
-
-- (id)initWithPodcastEpisode:(BVPodcastEpisode *)episode playbackEnabled:(BOOL)enabled;
+- (id)initWithSummary:(NSString *)summaryHtml;
 
 @end

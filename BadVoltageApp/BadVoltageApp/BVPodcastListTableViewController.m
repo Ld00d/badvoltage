@@ -28,6 +28,7 @@
 #import "BVPodcastPlayerViewController.h"
 #import "BVImages.h"
 
+
 @interface BVPodcastListTableViewController ()
 
 @end
@@ -72,9 +73,13 @@ static NSInteger _feedBatchSz;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
     
-    UIImageView *logoView = [[UIImageView alloc] initWithImage:[BVImages imageNamed:@"horizontalblackbg"]];
-    logoView.contentMode = UIViewContentModeScaleAspectFit;
-    logoView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[BVImages imageNamed:@"horizontalblackbg"]];
+    logoImageView.contentMode = UIViewContentModeScaleAspectFit;
+    //logoImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, logoImageView.frame.size.width, logoImageView.frame.size.height)];
+    
+    [logoView addSubview:logoImageView];
 
     self.navigationItem.titleView = logoView;
     
@@ -85,7 +90,6 @@ static NSInteger _feedBatchSz;
     self.tableView.backgroundColor = [UIColor blackColor];
     
     _nowPlayingButton = [[UIBarButtonItem alloc] initWithImage:[BVImages imageNamed:@"next"] style:UIBarButtonItemStylePlain target:self action:@selector(nowPlayingTouched:)];
-    
     
     self.navigationItem.rightBarButtonItem = _nowPlayingButton;
     
@@ -98,6 +102,8 @@ static NSInteger _feedBatchSz;
     self.tableView.backgroundView.layer.zPosition = refreshControl.layer.zPosition -1;
     
     [self setRefreshControl:refreshControl];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
      
     NSRange range;
     range.length = _feedBatchSz;
@@ -106,6 +112,10 @@ static NSInteger _feedBatchSz;
     
     
 }
+
+
+
+
 
 - (void)refreshEpisodes:(id)sender
 {

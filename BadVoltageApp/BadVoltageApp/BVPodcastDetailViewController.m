@@ -20,38 +20,35 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
 
+#import "BVPodcastDetailViewController.h"
 
-#import <UIKit/UIKit.h>
-#import "BVViewController.h"
+@interface BVPodcastDetailViewController ()
 
-@class BVPodcastEpisode;
+@end
 
-@interface BVPodcastPlayerViewController : BVViewController<UITextViewDelegate, UIWebViewDelegate>
+@implementation BVPodcastDetailViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
-@property (nonatomic, strong, readonly) BVPodcastEpisode *episode;
-@property (nonatomic, readonly) BOOL isPlaying;
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+}
 
-@property (weak, nonatomic) IBOutlet UIView *summaryView;
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
-@property (weak, nonatomic) IBOutlet UIButton *rewindButton;
-@property (weak, nonatomic) IBOutlet UIButton *stopButton;
-@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIButton *fastforwardButton;
-@property (weak, nonatomic) IBOutlet UISlider *scrubber;
-
-- (IBAction)rewind:(id)sender;
-- (IBAction)stop:(id)sender;
-- (IBAction)pause:(id)sender;
-- (IBAction)play:(id)sender;
-- (IBAction)fastforward:(id)sender;
-- (IBAction)scrub:(id)sender;
-- (IBAction)beginScrubbing:(id)sender;
-- (IBAction)endScrubbing:(id)sender;
-
-- (id)initWithPodcastEpisode:(BVPodcastEpisode *)episode playbackEnabled:(BOOL)enabled;
-
+- (IBAction)playEpisode:(id)sender {
+}
 @end

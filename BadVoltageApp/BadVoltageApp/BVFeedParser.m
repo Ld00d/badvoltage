@@ -79,13 +79,13 @@
             [text appendString:string];
         };
         [_episode setTitle:text];
-    } else if (_episode != nil && [elementName isEqualToString:@"itunes:subtitle"]) {
+    } else if (_episode != nil && [elementName isEqualToString:@"description"]) {
         NSMutableString *text = [[NSMutableString alloc] init];
         _textsetter = ^void(NSString* string) {
             [text appendString:string];
         };
         [_episode setSubtitle:text];
-    } else if (_episode != nil && [elementName isEqualToString:@"itunes:summary"]) {
+    } else if (_episode != nil && [elementName isEqualToString:@"content:encoded"]) {
         NSMutableString *text = [[NSMutableString alloc] init];
         _textsetter = ^void(NSString* string) {
             [text appendString:string];

@@ -30,6 +30,10 @@
 		635D068618D93BF600CD8EE4 /* BVPodcastPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068518D93BF600CD8EE4 /* BVPodcastPlayerViewController.m */; };
 		635D068818D941C200CD8EE4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D068718D941C200CD8EE4 /* AVFoundation.framework */; };
 		635D068E18DE94AE00CD8EE4 /* BVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D068D18DE94AE00CD8EE4 /* BVViewController.m */; };
+		6379D6A9195FAFED00EA480A /* BVPodcastSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6379D6A7195FAFED00EA480A /* BVPodcastSummaryViewController.m */; };
+		6379D6AA195FAFED00EA480A /* BVPodcastSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6379D6A8195FAFED00EA480A /* BVPodcastSummaryViewController.xib */; };
+		639FBA14195D19DF003E5B35 /* BVPodcastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639FBA12195D19DF003E5B35 /* BVPodcastDetailViewController.m */; };
+		639FBA15195D19DF003E5B35 /* BVPodcastDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639FBA13195D19DF003E5B35 /* BVPodcastDetailViewController.xib */; };
 		63C15C4418E289AD004A25A1 /* horizontalblackbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C4318E289AD004A25A1 /* horizontalblackbg@2x.png */; };
 		63C15C4618E289F5004A25A1 /* horizontalblackbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C4518E289F5004A25A1 /* horizontalblackbg.png */; };
 		63C15C5B18EAF07F004A25A1 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C15C5A18EAF07F004A25A1 /* play.png */; };
@@ -89,6 +93,12 @@
 		635D068718D941C200CD8EE4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		635D068C18DE94AE00CD8EE4 /* BVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVViewController.h; sourceTree = "<group>"; };
 		635D068D18DE94AE00CD8EE4 /* BVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVViewController.m; sourceTree = "<group>"; };
+		6379D6A6195FAFED00EA480A /* BVPodcastSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastSummaryViewController.h; sourceTree = "<group>"; };
+		6379D6A7195FAFED00EA480A /* BVPodcastSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastSummaryViewController.m; sourceTree = "<group>"; };
+		6379D6A8195FAFED00EA480A /* BVPodcastSummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BVPodcastSummaryViewController.xib; sourceTree = "<group>"; };
+		639FBA11195D19DF003E5B35 /* BVPodcastDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVPodcastDetailViewController.h; sourceTree = "<group>"; };
+		639FBA12195D19DF003E5B35 /* BVPodcastDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVPodcastDetailViewController.m; sourceTree = "<group>"; };
+		639FBA13195D19DF003E5B35 /* BVPodcastDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BVPodcastDetailViewController.xib; sourceTree = "<group>"; };
 		63C15C4318E289AD004A25A1 /* horizontalblackbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "horizontalblackbg@2x.png"; sourceTree = "<group>"; };
 		63C15C4518E289F5004A25A1 /* horizontalblackbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horizontalblackbg.png; sourceTree = "<group>"; };
 		63C15C5A18EAF07F004A25A1 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
@@ -164,11 +174,17 @@
 			children = (
 				635D063E18D29B4D00CD8EE4 /* BVAppDelegate.h */,
 				635D063F18D29B4D00CD8EE4 /* BVAppDelegate.m */,
+				639FBA11195D19DF003E5B35 /* BVPodcastDetailViewController.h */,
+				639FBA12195D19DF003E5B35 /* BVPodcastDetailViewController.m */,
+				639FBA13195D19DF003E5B35 /* BVPodcastDetailViewController.xib */,
 				635D067B18D5063400CD8EE4 /* BVPodcastListTableViewController.h */,
 				635D067C18D5063400CD8EE4 /* BVPodcastListTableViewController.m */,
 				635D068418D93BF600CD8EE4 /* BVPodcastPlayerViewController.h */,
 				635D068518D93BF600CD8EE4 /* BVPodcastPlayerViewController.m */,
 				63C6EAA818F9F88F0073BB6A /* BVPodcastPlayerViewController.xib */,
+				6379D6A6195FAFED00EA480A /* BVPodcastSummaryViewController.h */,
+				6379D6A7195FAFED00EA480A /* BVPodcastSummaryViewController.m */,
+				6379D6A8195FAFED00EA480A /* BVPodcastSummaryViewController.xib */,
 				635D068C18DE94AE00CD8EE4 /* BVViewController.h */,
 				635D068D18DE94AE00CD8EE4 /* BVViewController.m */,
 				63C15C4718E28C34004A25A1 /* Controls */,
@@ -339,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63EE3ECD190C5449002E521B /* next.png in Resources */,
+				639FBA15195D19DF003E5B35 /* BVPodcastDetailViewController.xib in Resources */,
 				63C15C5B18EAF07F004A25A1 /* play.png in Resources */,
 				63C15C5D18EAF0F4004A25A1 /* stop.png in Resources */,
 				63C15C4618E289F5004A25A1 /* horizontalblackbg.png in Resources */,
@@ -351,6 +368,7 @@
 				63C6EAA918F9F88F0073BB6A /* BVPodcastPlayerViewController.xib in Resources */,
 				635D066818D4C4A900CD8EE4 /* bv-lightning.jpg in Resources */,
 				63C15C6118EAF4AB004A25A1 /* rewind.png in Resources */,
+				6379D6AA195FAFED00EA480A /* BVPodcastSummaryViewController.xib in Resources */,
 				635D063A18D29B4D00CD8EE4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +394,8 @@
 				635D068618D93BF600CD8EE4 /* BVPodcastPlayerViewController.m in Sources */,
 				635D068018D7223000CD8EE4 /* BVSettingsRepository.m in Sources */,
 				635D067A18D4DB0100CD8EE4 /* BVFeedParser.m in Sources */,
+				639FBA14195D19DF003E5B35 /* BVPodcastDetailViewController.m in Sources */,
+				6379D6A9195FAFED00EA480A /* BVPodcastSummaryViewController.m in Sources */,
 				635D067018D4C7AE00CD8EE4 /* BVPodcastMedia.m in Sources */,
 				635D067D18D5063400CD8EE4 /* BVPodcastListTableViewController.m in Sources */,
 				635D063C18D29B4D00CD8EE4 /* main.m in Sources */,
@@ -438,7 +458,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: brian Lampe (3N24HLFX23)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -456,6 +476,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "7BB65A2E-7D49-45CD-87E6-BE033DC32D1B";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -476,7 +497,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: brian Lampe (3N24HLFX23)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -487,6 +508,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "7BB65A2E-7D49-45CD-87E6-BE033DC32D1B";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -498,12 +520,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: brian Lampe (3N24HLFX23)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: brian Lampe (3N24HLFX23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BadVoltageApp/BadVoltageApp-Prefix.pch";
 				INFOPLIST_FILE = "BadVoltageApp/BadVoltageApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A3AC1189-B5E7-4B28-A81C-C808F07D0CDD";
+				PROVISIONING_PROFILE = "03058946-84E3-4FF5-A3D6-B70363BCEEA1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -514,12 +536,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: brian Lampe (3N24HLFX23)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: brian Lampe (3N24HLFX23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BadVoltageApp/BadVoltageApp-Prefix.pch";
 				INFOPLIST_FILE = "BadVoltageApp/BadVoltageApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A3AC1189-B5E7-4B28-A81C-C808F07D0CDD";
+				PROVISIONING_PROFILE = "CAC79810-958F-4274-97DF-AB184DBF76CF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

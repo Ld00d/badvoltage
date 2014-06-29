@@ -27,6 +27,7 @@
 #import "BVPodcastEpisode.h"
 #import "BVPodcastMedia.h"
 #import "BVImages.h"
+#import "BVPodcastSummaryViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 
@@ -50,6 +51,7 @@ static void *currentItemContext = &currentItemContext;
     double _duration;
     BOOL _playbackEnabled;
     BOOL _isPlaying;
+    BVPodcastSummaryViewController *_summaryViewController;
 }
 
 - (BOOL)isPlaying
@@ -73,6 +75,11 @@ static void *currentItemContext = &currentItemContext;
         _isPlaying = NO;
         _duration = 0.0f;
         _rateToRestore = 0.0f;
+
+        _summaryViewController = [[BVPodcastSummaryViewController alloc] initWithSummary:_episode.summary];
+        
+        [self addChildViewController:_summaryViewController];
+        
     }
     return self;
 }
@@ -86,10 +93,9 @@ static void *currentItemContext = &currentItemContext;
     [self.view addSubview:imgVw];
     [self.view sendSubviewToBack:imgVw];
     
-    [self.summaryView setText:self.episode.summary];
-    
-    [self.summaryView setTextContainerInset:UIEdgeInsetsMake(5, 10, 5, 10)];
-    
+    _summaryViewController.view.frame = self.summaryView.frame;
+    [self.summaryView addSubview:_summaryViewController.view];
+    [_summaryViewController didMoveToParentViewController:self];
     
     [self.scrubber setValue:0.0];
     [self.scrubber setEnabled:NO];
@@ -115,11 +121,17 @@ static void *currentItemContext = &currentItemContext;
                                 [self prepareToPlayAsset:asset withKeys:requestedKeys];
                             });
          }];
+        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        [self becomeFirstResponder];
     }
     
     [super viewDidLoad];
 }
 
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -432,10 +444,59 @@ static void *currentItemContext = &currentItemContext;
     
 }
 
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
+    if (event.type == UIEventTypeRemoteControl) {
+        switch (event.subtype) {
+            case UIEventSubtypeRemoteControlTogglePlayPause:
+                if (self.playButton.enabled) {
+                    [self play:nil];
+                } else if (self.pauseButton.enabled) {
+                    [self pause:nil];
+                }
+                break;
+                
+            case UIEventSubtypeRemoteControlPlay:
+                [self play:nil];
+                break;
+                
+            case UIEventSubtypeRemoteControlBeginSeekingBackward:
+                [self rewind:nil];
+                break;
+                
+            case UIEventSubtypeRemoteControlEndSeekingBackward:
+            case UIEventSubtypeRemoteControlEndSeekingForward:
+                [self play:nil];
+                break;
+                
+            case UIEventSubtypeRemoteControlBeginSeekingForward:
+                [self fastforward:nil];
+                break;
+            
+            case UIEventSubtypeRemoteControlPause:
+                [self pause:nil];
+                break;
+            
+            case UIEventSubtypeRemoteControlStop:
+                [self stop:nil];
+                break;
+                
+            default:
+                break;
+        }
+
+    }
+
+}
+
 #pragma mark -
+
 
 - (void)dealloc
 {
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
+    
     NSLog(@"BVPodcastPlayerViewController dealloc");
     [self clearObservers];
     

@@ -13,7 +13,7 @@
                 <outlet property="rewindButton" destination="YyY-LV-Fxh" id="sbc-Vi-HTv"/>
                 <outlet property="scrubber" destination="PDE-Qc-6de" id="knL-xe-XGM"/>
                 <outlet property="stopButton" destination="uKP-Gr-myI" id="2zH-R9-T3i"/>
-                <outlet property="summaryView" destination="SVN-cD-Msh" id="H6X-RE-0DU"/>
+                <outlet property="summaryView" destination="voP-dJ-bnG" id="gCf-sc-AXF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="DSu-PQ-f4f"/>
             </connections>
         </placeholder>
@@ -22,22 +22,6 @@
             <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVN-cD-Msh">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="426"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                            <color key="value" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </textView>
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YyY-LV-Fxh">
                     <rect key="frame" x="45" y="472" width="30" height="22"/>
                     <state key="normal" image="rewind.png">
@@ -84,7 +68,7 @@
                     </connections>
                 </button>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PDE-Qc-6de">
-                    <rect key="frame" x="18" y="434" width="284" height="31"/>
+                    <rect key="frame" x="43" y="434" width="234" height="31"/>
                     <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="beginScrubbing:" destination="-1" eventType="touchDown" id="pCE-E5-OfO"/>
@@ -94,26 +78,31 @@
                         <action selector="scrub:" destination="-1" eventType="valueChanged" id="cgZ-C5-74c"/>
                     </connections>
                 </slider>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voP-dJ-bnG">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="426"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="leading" secondItem="kDd-8O-jBB" secondAttribute="trailing" constant="20" id="188-44-SvK"/>
-                <constraint firstItem="SVN-cD-Msh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9yo-Pr-dP5"/>
-                <constraint firstAttribute="trailing" secondItem="PDE-Qc-6de" secondAttribute="trailing" constant="20" id="B6N-f9-FPJ"/>
-                <constraint firstItem="SVN-cD-Msh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DsK-hX-j0L"/>
-                <constraint firstAttribute="trailing" secondItem="SVN-cD-Msh" secondAttribute="trailing" id="EVP-0F-cze"/>
+                <constraint firstItem="PDE-Qc-6de" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="702-6E-d9Q"/>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="bottom" secondItem="uKP-Gr-myI" secondAttribute="bottom" id="FSw-Ad-8oA"/>
+                <constraint firstItem="PDE-Qc-6de" firstAttribute="top" secondItem="voP-dJ-bnG" secondAttribute="bottom" constant="8" id="Fll-mN-TXT"/>
                 <constraint firstItem="U4M-wG-ywY" firstAttribute="leading" secondItem="uKP-Gr-myI" secondAttribute="trailing" constant="20" id="Jnj-aG-VjA"/>
                 <constraint firstAttribute="centerX" secondItem="U4M-wG-ywY" secondAttribute="centerX" id="K4x-5T-o58"/>
+                <constraint firstAttribute="trailing" secondItem="voP-dJ-bnG" secondAttribute="trailing" id="KJa-nB-dJm"/>
                 <constraint firstItem="uKP-Gr-myI" firstAttribute="leading" secondItem="YyY-LV-Fxh" secondAttribute="trailing" constant="20" id="TJK-kl-Blv"/>
                 <constraint firstAttribute="bottom" secondItem="U4M-wG-ywY" secondAttribute="bottom" constant="10" id="Uu4-n7-9TL"/>
-                <constraint firstItem="PDE-Qc-6de" firstAttribute="top" secondItem="SVN-cD-Msh" secondAttribute="bottom" constant="8" id="Xax-KM-VvG"/>
+                <constraint firstAttribute="trailing" secondItem="PDE-Qc-6de" secondAttribute="trailing" constant="45" id="dq4-OV-SLj"/>
                 <constraint firstItem="kDd-8O-jBB" firstAttribute="leading" secondItem="U4M-wG-ywY" secondAttribute="trailing" constant="20" id="fit-Ma-faQ"/>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="bottom" secondItem="YyY-LV-Fxh" secondAttribute="bottom" id="fnx-AA-aBO"/>
-                <constraint firstItem="PDE-Qc-6de" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="ifU-De-Xq7"/>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="bottom" secondItem="kDd-8O-jBB" secondAttribute="bottom" id="lH7-XQ-JKN"/>
+                <constraint firstItem="voP-dJ-bnG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rNI-19-UKv"/>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="top" secondItem="PDE-Qc-6de" secondAttribute="bottom" constant="8" id="y0a-2K-DXJ"/>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="bottom" secondItem="U4M-wG-ywY" secondAttribute="bottom" id="ycg-6k-oyY"/>
+                <constraint firstItem="voP-dJ-bnG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zkI-pK-RMf"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
