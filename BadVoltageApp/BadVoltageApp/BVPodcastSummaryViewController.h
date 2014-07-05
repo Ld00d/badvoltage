@@ -26,6 +26,6 @@
 
 @property (weak, nonatomic) IBOutlet UIWebView *summaryView;
 
-- (id)initWithSummary:(NSString *)summaryHtml;
+@property (weak, nonatomic) NSString *summaryHtml;
 
 @end

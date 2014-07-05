@@ -49,7 +49,6 @@ static void *currentItemContext = &currentItemContext;
     id _timeObserver;
     float _rateToRestore;
     double _duration;
-    BOOL _playbackEnabled;
     BOOL _isPlaying;
     BVPodcastSummaryViewController *_summaryViewController;
 }
@@ -64,44 +63,29 @@ static void *currentItemContext = &currentItemContext;
     return _episode;
 }
 
-
-- (id)initWithPodcastEpisode:(BVPodcastEpisode *)e playbackEnabled:(BOOL)enabled
+- (void)setEpisode:(BVPodcastEpisode *)episode
 {
-    self = [super initWithNibName:nil bundle:nil];
-    if (self) {
-        _episode = e;
+    if (episode != _episode) { //if we're already on this episode, leave it as is
+        
+        if (_player != nil) {
+            [self cleanup];
+            self.rewindButton.enabled = NO;
+            self.fastforwardButton.enabled = NO;
+            self.pauseButton.enabled = NO;
+            self.stopButton.enabled = NO;
+            [self.scrubber setValue:0.0];
+            [self.scrubber setEnabled:NO];
+
+        }
+        
+        
+        _episode = episode;
         self.title = _episode.title;
-        _playbackEnabled = enabled;
+        [_summaryViewController setSummaryHtml:episode.summary];
         _isPlaying = NO;
         _duration = 0.0f;
         _rateToRestore = 0.0f;
-
-        _summaryViewController = [[BVPodcastSummaryViewController alloc] initWithSummary:_episode.summary];
         
-        [self addChildViewController:_summaryViewController];
-        
-    }
-    return self;
-}
-
-
-
-- (void)viewDidLoad
-{
-    UIImage *bgImage = [BVImages imageNamed:@"bv-lightning.jpg"];
-    UIImageView *imgVw = [[UIImageView alloc] initWithImage:bgImage];
-    [self.view addSubview:imgVw];
-    [self.view sendSubviewToBack:imgVw];
-    
-    _summaryViewController.view.frame = self.summaryView.frame;
-    [self.summaryView addSubview:_summaryViewController.view];
-    [_summaryViewController didMoveToParentViewController:self];
-    
-    [self.scrubber setValue:0.0];
-    [self.scrubber setEnabled:NO];
-    [self.scrubber setThumbImage:[BVImages imageNamed:@"thumb"] forState:UIControlStateNormal];
-    
-    if (_playbackEnabled) {
         NSURL *mediaUrl = [NSURL URLWithString:[[_episode media] url]];
         
         /*
@@ -124,6 +108,36 @@ static void *currentItemContext = &currentItemContext;
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
         [self becomeFirstResponder];
     }
+}
+
+
+- (id)init
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        
+        _summaryViewController = [[BVPodcastSummaryViewController alloc] init];
+        
+        [self addChildViewController:_summaryViewController];
+        
+    }
+    return self;
+}
+
+
+
+- (void)viewDidLoad
+{
+    
+    _summaryViewController.view.frame = self.summaryView.frame;
+    [self.summaryView addSubview:_summaryViewController.view];
+    [_summaryViewController didMoveToParentViewController:self];
+
+    
+    [self.scrubber setValue:0.0];
+    [self.scrubber setEnabled:NO];
+    [self.scrubber setThumbImage:[BVImages imageNamed:@"thumb"] forState:UIControlStateNormal];
+    
     
     [super viewDidLoad];
 }
@@ -494,10 +508,14 @@ static void *currentItemContext = &currentItemContext;
 
 - (void)dealloc
 {
+    [self cleanup];
+}
+
+- (void)cleanup
+{
     [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
     [self resignFirstResponder];
     
-    NSLog(@"BVPodcastPlayerViewController dealloc");
     [self clearObservers];
     
     _episode = nil;

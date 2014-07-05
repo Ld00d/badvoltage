@@ -44,19 +44,21 @@
     NSString *_summaryHtml;
 }
 
-- (id)initWithSummary:(NSString *)summaryHtml
+- (NSString *)summaryHtml
 {
-    self = [self initWithNibName:nil bundle:nil];
-    if (self) {
-        _summaryHtml = [NSString stringWithFormat:HTML, summaryHtml];
-    }
-    return self;
+    return _summaryHtml;
 }
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)setSummaryHtml:(NSString *)summaryHtml
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    _summaryHtml = [NSString stringWithFormat:HTML, summaryHtml];
+    [self.summaryView loadHTMLString:_summaryHtml baseURL:nil];
+
+}
+
+- (id)init
+{
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         self.summaryView.delegate = self;
     }

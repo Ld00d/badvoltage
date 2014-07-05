@@ -21,26 +21,45 @@
 //THE SOFTWARE.
 
 #import "BVPodcastDetailViewController.h"
+#import "BVPodcastEpisode.h"
+#import "BVImages.h"
+#import "BVPodcastSummaryViewController.h"
 
 @interface BVPodcastDetailViewController ()
 
 @end
 
 @implementation BVPodcastDetailViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    BVPodcastEpisode *_episode;
+    BVPodcastSummaryViewController *_summaryViewController;
+}
+
+- (id)initWithEpisode:(BVPodcastEpisode *)episode
+{
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        // Custom initialization
+        _episode = episode;
+        self.title = episode.title;
+
+        _summaryViewController = [[BVPodcastSummaryViewController alloc] init];
+        [_summaryViewController setSummaryHtml:episode.summary];
+        
+        [self addChildViewController:_summaryViewController];
     }
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    _summaryViewController.view.frame = self.summaryView.frame;
+    [self.summaryView addSubview:_summaryViewController.view];
+    [_summaryViewController didMoveToParentViewController:self];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,5 +69,16 @@
 }
 
 - (IBAction)playEpisode:(id)sender {
+    NSDictionary *userInfo = @{@"episode": _episode};
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BVPlayEpisodeNotification" object:nil userInfo:userInfo];
 }
+
+- (void)dealloc
+{
+    _episode = nil;
+    _summaryViewController = nil;
+}
+
+
 @end

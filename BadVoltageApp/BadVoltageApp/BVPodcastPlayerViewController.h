@@ -31,7 +31,7 @@
 
 }
 
-@property (nonatomic, strong, readonly) BVPodcastEpisode *episode;
+@property (nonatomic, strong) BVPodcastEpisode *episode;
 @property (nonatomic, readonly) BOOL isPlaying;
 
 @property (weak, nonatomic) IBOutlet UIView *summaryView;
@@ -52,6 +52,6 @@
 - (IBAction)beginScrubbing:(id)sender;
 - (IBAction)endScrubbing:(id)sender;
 
-- (id)initWithPodcastEpisode:(BVPodcastEpisode *)episode playbackEnabled:(BOOL)enabled;
+
 
 @end

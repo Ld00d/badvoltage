@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BV_FEED_REFRESH_INTERVAL</key>
+	<real>10000</real>
 	<key>BV_FEED_FETCH_SZ</key>
 	<integer>15</integer>
 	<key>BV_FEED_URL</key>

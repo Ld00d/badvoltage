@@ -22,6 +22,7 @@
 
 
 #import "BVPodcastListTableViewController.h"
+#import "BVPodcastDetailViewController.h"
 #import "BVPodcastRepository.h"
 #import "BVPodcastEpisode.h"
 #import "BVSettingsRepository.h"
@@ -34,13 +35,13 @@
 @end
 
 static NSInteger _feedBatchSz;
+static NSTimeInterval _feedRefreshInterval;
 
 @implementation BVPodcastListTableViewController
 {
     BVPodcastRepository *_podcastRepo;
     NSArray *_episodes;
-    BVPodcastPlayerViewController *_selected;
-    BVPodcastPlayerViewController *_nowPlaying;
+    BVPodcastPlayerViewController *_player;
     UIBarButtonItem *_nowPlayingButton;
     NSTimer *_refreshTimer;
 }
@@ -49,6 +50,8 @@ static NSInteger _feedBatchSz;
 {
     NSNumber *feedBatchSz = [BVSettingsRepository getSettingForKey:@"BV_FEED_FETCH_SZ"];
     _feedBatchSz = [feedBatchSz integerValue];
+    NSNumber *feedRefreshInterval = [BVSettingsRepository getSettingForKey:@"BV_FEED_REFRESH_INTERVAL"];
+    _feedRefreshInterval = [feedRefreshInterval floatValue];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -56,16 +59,20 @@ static NSInteger _feedBatchSz;
     self = [super initWithStyle:style];
     if (self) {
         _podcastRepo = [BVPodcastRepository podcastRepository];
-        _selected = _nowPlaying = nil;
-        //hard coded timer for 10800 seconds
-        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:10800 target:self selector:@selector(refreshEpisodes) userInfo:nil repeats:YES];
+        
+        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:_feedRefreshInterval target:self selector:@selector(refreshEpisodes) userInfo:nil repeats:YES];
+        
+        _player = [[BVPodcastPlayerViewController alloc] init];
     }
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEpisodeNotification:) name:@"BVPlayEpisodeNotification" object:nil];
     
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
@@ -111,6 +118,7 @@ static NSInteger _feedBatchSz;
     _episodes = [_podcastRepo getEpisodesWithRange:range];
     
     
+    
 }
 
 
@@ -141,26 +149,11 @@ static NSInteger _feedBatchSz;
 
 - (IBAction)nowPlayingTouched:(id)sender
 {
-    _selected = _nowPlaying;
-    [[self navigationController] pushViewController:_selected animated:NO];
+    [[self navigationController] pushViewController:_player animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
-    if (_nowPlaying == nil && _selected != nil && _selected.isPlaying ) {
-        //nothing was playing, but now it is.
-        _nowPlaying = _selected;
-        _nowPlayingButton.enabled = YES;
-        
-    } else if (_nowPlaying != nil && !_nowPlaying.isPlaying) {
-        //something was playing, but it's not anymore.
-        _nowPlaying = nil;
-        _nowPlayingButton.enabled = NO;
-    }
-    
-    _selected = nil;
-    
     [super viewWillAppear:animated];
 }
 
@@ -180,6 +173,21 @@ static NSInteger _feedBatchSz;
 {
     return @"BVPodcastListTableViewController";
 }
+
+- (void)playEpisodeNotification:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    BVPodcastEpisode *episode = [userInfo objectForKey:@"episode"];
+    
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    [_player setEpisode:episode];
+    
+    _nowPlayingButton.enabled = YES;
+    
+    [self.navigationController pushViewController:_player animated:YES];
+}
+
 
 #pragma mark - Table view data source
 
@@ -219,16 +227,11 @@ static NSInteger _feedBatchSz;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     BVPodcastEpisode *episode = [_episodes objectAtIndex:[indexPath row]];
-    
-    if (_nowPlaying == nil || _nowPlaying.episode != episode) {
-        BOOL playbackAllowed = (_nowPlaying == nil);
-        _selected = [[BVPodcastPlayerViewController alloc] initWithPodcastEpisode:episode playbackEnabled:playbackAllowed];
-    } else {
-        _selected = _nowPlaying;
-    }
+    BVPodcastDetailViewController *detailViewController = [[BVPodcastDetailViewController alloc] initWithEpisode:episode];
 
-    [[self navigationController] pushViewController:_selected animated:NO];
+    [[self navigationController] pushViewController:detailViewController animated:YES];
 }
 
 

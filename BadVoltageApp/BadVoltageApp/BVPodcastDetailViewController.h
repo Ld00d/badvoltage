@@ -21,9 +21,15 @@
 //THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "BVViewController.h"
 
-@interface BVPodcastDetailViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIWebView *summaryView;
+@class BVPodcastEpisode;
+
+@interface BVPodcastDetailViewController : BVViewController
+
+@property (weak, nonatomic) IBOutlet UIView *summaryView;
 - (IBAction)playEpisode:(id)sender;
+
+- (id)initWithEpisode:(BVPodcastEpisode *)episode;
 
 @end
