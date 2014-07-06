@@ -69,12 +69,14 @@ static void *currentItemContext = &currentItemContext;
         
         if (_player != nil) {
             [self cleanup];
+            self.playButton.enabled = NO;
             self.rewindButton.enabled = NO;
             self.fastforwardButton.enabled = NO;
             self.pauseButton.enabled = NO;
             self.stopButton.enabled = NO;
             [self.scrubber setValue:0.0];
             [self.scrubber setEnabled:NO];
+            
 
         }
         
@@ -85,6 +87,9 @@ static void *currentItemContext = &currentItemContext;
         _isPlaying = NO;
         _duration = 0.0f;
         _rateToRestore = 0.0f;
+        
+        self.elapsedTimeLabel.text = @"00:00";
+        self.remainingTimeLabel.text = @"00:00";
         
         NSURL *mediaUrl = [NSURL URLWithString:[[_episode media] url]];
         
@@ -132,7 +137,8 @@ static void *currentItemContext = &currentItemContext;
     _summaryViewController.view.frame = self.summaryView.frame;
     [self.summaryView addSubview:_summaryViewController.view];
     [_summaryViewController didMoveToParentViewController:self];
-
+    self.elapsedTimeLabel.text = @"00:00";
+    self.remainingTimeLabel.text = @"00:00";
     
     [self.scrubber setValue:0.0];
     [self.scrubber setEnabled:NO];
@@ -341,25 +347,19 @@ static void *currentItemContext = &currentItemContext;
         self.scrubber.enabled = YES;
         _duration = CMTimeGetSeconds(playerDuration);
         [self initScrubberTimer];
+        [self syncScrubber];
     }
     
 }
 
 - (void)initScrubberTimer
 {
-    double interval = 0.1f;
-    
-    if (isfinite(_duration)) {
-        CGFloat width = CGRectGetWidth(self.scrubber.bounds);
-        interval = 0.5f * _duration / width;
-    }
     __weak BVPodcastPlayerViewController *welf = self;
-    _timeObserver = [_player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(interval, NSEC_PER_SEC)
+    _timeObserver = [_player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, NSEC_PER_SEC)
                                                           queue:NULL
                                                      usingBlock:^(CMTime time) {
                                                          [welf syncScrubber];
                                                      }];
-
 }
 
 - (void)syncScrubber
@@ -370,8 +370,28 @@ static void *currentItemContext = &currentItemContext;
     double time = CMTimeGetSeconds(_player.currentTime);
     
     self.scrubber.value = (maxValue - minValue) * time / _duration + minValue;
+    
+    self.elapsedTimeLabel.text = [self stringFromSeconds:time];
+    
+    time = _duration - time;
+    
+    self.remainingTimeLabel.text = [self stringFromSeconds:time];
 }
 
+
+
+- (NSString *)stringFromSeconds:(double)seconds
+{
+    NSString * result;
+    
+    
+    int mm = (int)(round(seconds) / 60);
+    int ss = ((int)round(seconds)) % 60;
+    
+    result = [NSString stringWithFormat:@"%02i:%02i", mm, ss];
+    
+    return result;
+}
 
 - (IBAction)beginScrubbing:(id)sender
 {
@@ -391,6 +411,12 @@ static void *currentItemContext = &currentItemContext;
         double time = _duration * (value - minValue) / (maxValue - minValue);
         
         [_player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
+        
+        self.elapsedTimeLabel.text = [self stringFromSeconds:time];
+        
+        time = _duration - time;
+        
+        self.remainingTimeLabel.text = [self stringFromSeconds:time];
     }
     
     

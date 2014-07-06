@@ -109,8 +109,6 @@ static NSTimeInterval _feedRefreshInterval;
     self.tableView.backgroundView.layer.zPosition = refreshControl.layer.zPosition -1;
     
     [self setRefreshControl:refreshControl];
-    
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
      
     NSRange range;
     range.length = _feedBatchSz;
@@ -216,6 +214,8 @@ static NSTimeInterval _feedRefreshInterval;
         cell.contentView.backgroundColor = [UIColor clearColor];
         cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.05];
         cell.textLabel.textColor = [UIColor whiteColor];
+        cell.selectedBackgroundView = [[UIView alloc] init];
+        cell.selectedBackgroundView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:.2];
     }
     
     BVPodcastEpisode *episode = [_episodes objectAtIndex:[indexPath row]];
@@ -234,6 +234,13 @@ static NSTimeInterval _feedRefreshInterval;
     [[self navigationController] pushViewController:detailViewController animated:YES];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+    footerView.backgroundColor = [UIColor clearColor];
+    
+    return footerView;
+}
 
 
 

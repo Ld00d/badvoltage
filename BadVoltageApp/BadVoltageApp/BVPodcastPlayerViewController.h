@@ -42,6 +42,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *fastforwardButton;
 @property (weak, nonatomic) IBOutlet UISlider *scrubber;
+@property (weak, nonatomic) IBOutlet UILabel *elapsedTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *remainingTimeLabel;
 
 - (IBAction)rewind:(id)sender;
 - (IBAction)stop:(id)sender;

@@ -7,9 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BVPodcastPlayerViewController">
             <connections>
+                <outlet property="elapsedTimeLabel" destination="Jh9-1h-tLW" id="YyJ-IK-krs"/>
                 <outlet property="fastforwardButton" destination="EyJ-3h-h8o" id="Krq-Ur-Fb2"/>
                 <outlet property="pauseButton" destination="U4M-wG-ywY" id="2Vs-AD-rFT"/>
                 <outlet property="playButton" destination="kDd-8O-jBB" id="a6m-65-VHy"/>
+                <outlet property="remainingTimeLabel" destination="MkE-3u-LMN" id="6Cx-Bx-GMc"/>
                 <outlet property="rewindButton" destination="YyY-LV-Fxh" id="sbc-Vi-HTv"/>
                 <outlet property="scrubber" destination="PDE-Qc-6de" id="knL-xe-XGM"/>
                 <outlet property="stopButton" destination="uKP-Gr-myI" id="2zH-R9-T3i"/>
@@ -83,21 +85,40 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jh9-1h-tLW">
+                    <rect key="frame" x="3" y="437" width="39" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkE-3u-LMN">
+                    <rect key="frame" x="278" y="437" width="39" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="leading" secondItem="kDd-8O-jBB" secondAttribute="trailing" constant="20" id="188-44-SvK"/>
-                <constraint firstItem="PDE-Qc-6de" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="702-6E-d9Q"/>
+                <constraint firstItem="Jh9-1h-tLW" firstAttribute="top" secondItem="voP-dJ-bnG" secondAttribute="bottom" constant="11" id="1Me-dU-ys3"/>
+                <constraint firstItem="MkE-3u-LMN" firstAttribute="leading" secondItem="PDE-Qc-6de" secondAttribute="trailing" constant="3" id="Bh7-z4-r2c"/>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="bottom" secondItem="uKP-Gr-myI" secondAttribute="bottom" id="FSw-Ad-8oA"/>
+                <constraint firstItem="PDE-Qc-6de" firstAttribute="leading" secondItem="Jh9-1h-tLW" secondAttribute="trailing" constant="3" id="FUZ-c4-nkZ"/>
                 <constraint firstItem="PDE-Qc-6de" firstAttribute="top" secondItem="voP-dJ-bnG" secondAttribute="bottom" constant="8" id="Fll-mN-TXT"/>
+                <constraint firstItem="Jh9-1h-tLW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="3" id="Hcz-6M-ipl"/>
                 <constraint firstItem="U4M-wG-ywY" firstAttribute="leading" secondItem="uKP-Gr-myI" secondAttribute="trailing" constant="20" id="Jnj-aG-VjA"/>
                 <constraint firstAttribute="centerX" secondItem="U4M-wG-ywY" secondAttribute="centerX" id="K4x-5T-o58"/>
                 <constraint firstAttribute="trailing" secondItem="voP-dJ-bnG" secondAttribute="trailing" id="KJa-nB-dJm"/>
                 <constraint firstItem="uKP-Gr-myI" firstAttribute="leading" secondItem="YyY-LV-Fxh" secondAttribute="trailing" constant="20" id="TJK-kl-Blv"/>
                 <constraint firstAttribute="bottom" secondItem="U4M-wG-ywY" secondAttribute="bottom" constant="10" id="Uu4-n7-9TL"/>
-                <constraint firstAttribute="trailing" secondItem="PDE-Qc-6de" secondAttribute="trailing" constant="45" id="dq4-OV-SLj"/>
+                <constraint firstItem="MkE-3u-LMN" firstAttribute="top" secondItem="voP-dJ-bnG" secondAttribute="bottom" constant="11" id="ctt-u8-UUe"/>
+                <constraint firstItem="PDE-Qc-6de" firstAttribute="leading" secondItem="Jh9-1h-tLW" secondAttribute="trailing" constant="3" id="d1O-nj-kYE"/>
                 <constraint firstItem="kDd-8O-jBB" firstAttribute="leading" secondItem="U4M-wG-ywY" secondAttribute="trailing" constant="20" id="fit-Ma-faQ"/>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="bottom" secondItem="YyY-LV-Fxh" secondAttribute="bottom" id="fnx-AA-aBO"/>
+                <constraint firstAttribute="trailing" secondItem="MkE-3u-LMN" secondAttribute="trailing" constant="3" id="irc-EV-WZb"/>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="bottom" secondItem="kDd-8O-jBB" secondAttribute="bottom" id="lH7-XQ-JKN"/>
                 <constraint firstItem="voP-dJ-bnG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rNI-19-UKv"/>
                 <constraint firstItem="EyJ-3h-h8o" firstAttribute="top" secondItem="PDE-Qc-6de" secondAttribute="bottom" constant="8" id="y0a-2K-DXJ"/>
