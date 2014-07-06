@@ -448,13 +448,8 @@ static void *currentItemContext = &currentItemContext;
 
 - (IBAction)rewind:(id)sender
 {
-    if (_player.rate >  0.) {
-        _player.rate = -1.0;
-        self.playButton.enabled = YES;
-    } else {
-        _player.rate = 1.0;
-        self.playButton.enabled = NO;
-    }
+    double time = CMTimeGetSeconds(_player.currentTime);
+    [_player seekToTime:CMTimeMakeWithSeconds(time - 30.0, NSEC_PER_SEC)];
 }
 
 
@@ -485,13 +480,8 @@ static void *currentItemContext = &currentItemContext;
 
 - (IBAction)fastforward:(id)sender
 {
-    if (_player.rate < 16.0) {
-        _player.rate = _player.rate * 2.0;
-        self.playButton.enabled = YES;
-    } else {
-        _player.rate = 1.0;
-        self.playButton.enabled = NO;
-    }
+    double time = CMTimeGetSeconds(_player.currentTime);
+    [_player seekToTime:CMTimeMakeWithSeconds(time + 30.0, NSEC_PER_SEC)];
     
 }
 
@@ -523,6 +513,7 @@ static void *currentItemContext = &currentItemContext;
             case UIEventSubtypeRemoteControlBeginSeekingForward:
                 [self fastforward:nil];
                 break;
+                
             
             case UIEventSubtypeRemoteControlPause:
                 [self pause:nil];
