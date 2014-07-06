@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6310DE041968DB0D00C6BF97 /* bvsquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 6310DE031968DB0D00C6BF97 /* bvsquare.png */; };
+		6310DE061968DDBE00C6BF97 /* bvsquare120.png in Resources */ = {isa = PBXBuildFile; fileRef = 6310DE051968DDBE00C6BF97 /* bvsquare120.png */; };
 		635D063018D29B4D00CD8EE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D062F18D29B4D00CD8EE4 /* Foundation.framework */; };
 		635D063218D29B4D00CD8EE4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D063118D29B4D00CD8EE4 /* CoreGraphics.framework */; };
 		635D063418D29B4D00CD8EE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D063318D29B4D00CD8EE4 /* UIKit.framework */; };
@@ -58,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6310DE031968DB0D00C6BF97 /* bvsquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bvsquare.png; sourceTree = "<group>"; };
+		6310DE051968DDBE00C6BF97 /* bvsquare120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bvsquare120.png; sourceTree = "<group>"; };
 		635D062C18D29B4D00CD8EE4 /* BadVoltageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadVoltageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		635D062F18D29B4D00CD8EE4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		635D063118D29B4D00CD8EE4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -229,6 +233,8 @@
 		635D066918D4C55700CD8EE4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6310DE031968DB0D00C6BF97 /* bvsquare.png */,
+				6310DE051968DDBE00C6BF97 /* bvsquare120.png */,
 				63C15C4518E289F5004A25A1 /* horizontalblackbg.png */,
 				63C15C4318E289AD004A25A1 /* horizontalblackbg@2x.png */,
 				635D066718D4C4A900CD8EE4 /* bv-lightning.jpg */,
@@ -358,6 +364,7 @@
 				639FBA15195D19DF003E5B35 /* BVPodcastDetailViewController.xib in Resources */,
 				63C15C5B18EAF07F004A25A1 /* play.png in Resources */,
 				63C15C5D18EAF0F4004A25A1 /* stop.png in Resources */,
+				6310DE041968DB0D00C6BF97 /* bvsquare.png in Resources */,
 				63C15C4618E289F5004A25A1 /* horizontalblackbg.png in Resources */,
 				635D064B18D29B4D00CD8EE4 /* Images.xcassets in Resources */,
 				63C6EAA118F0D8290073BB6A /* pause.png in Resources */,
@@ -369,6 +376,7 @@
 				635D066818D4C4A900CD8EE4 /* bv-lightning.jpg in Resources */,
 				63C15C6118EAF4AB004A25A1 /* rewind.png in Resources */,
 				6379D6AA195FAFED00EA480A /* BVPodcastSummaryViewController.xib in Resources */,
+				6310DE061968DDBE00C6BF97 /* bvsquare120.png in Resources */,
 				635D063A18D29B4D00CD8EE4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,6 +29,7 @@
 #import "BVImages.h"
 #import "BVPodcastSummaryViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 
 static void *statusContext = &statusContext;
@@ -110,6 +111,16 @@ static void *currentItemContext = &currentItemContext;
                                 [self prepareToPlayAsset:asset withKeys:requestedKeys];
                             });
          }];
+        
+        UIImage *albumArtImage = [BVImages imageNamed:@"bvsquare"];
+        MPMediaItemArtwork *albumArt = [[MPMediaItemArtwork alloc] initWithImage:albumArtImage];
+        
+        MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
+        
+        infoCenter.nowPlayingInfo = @{MPMediaItemPropertyArtist:@"Bad Voltage",
+                                      MPMediaItemPropertyTitle:_episode.title,
+                                      MPMediaItemPropertyArtwork:albumArt};
+        
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
         [self becomeFirstResponder];
     }
