@@ -25,7 +25,7 @@
 #define HTML @"<html> \
     <head> \
         <style> \
-            body { color: white; !important; background-color:transparent;} \
+            body { color: white; !important; background-color:transparent; font-family:Helvetica;} \
             a { color: white; !important} \
             a:visited { color: purple; !important} \
             a:link { color: white; !important}\

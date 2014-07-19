@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -26,7 +26,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YyY-LV-Fxh">
                     <rect key="frame" x="45" y="472" width="30" height="22"/>
-                    <state key="normal" image="rewind.png">
+                    <state key="normal" image="skipback.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -62,7 +62,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyJ-3h-h8o">
                     <rect key="frame" x="245" y="472" width="30" height="22"/>
-                    <state key="normal" image="fastforward.png">
+                    <state key="normal" image="skipfwd.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -71,7 +71,7 @@
                 </button>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PDE-Qc-6de">
                     <rect key="frame" x="43" y="434" width="234" height="31"/>
-                    <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" red="0.81020998954772949" green="0.60879933834075928" blue="0.99921339750289917" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="beginScrubbing:" destination="-1" eventType="touchDown" id="pCE-E5-OfO"/>
                         <action selector="endScrubbing:" destination="-1" eventType="touchUpOutside" id="IDI-uI-5cw"/>
@@ -131,10 +131,10 @@
         </view>
     </objects>
     <resources>
-        <image name="fastforward.png" width="30" height="20"/>
         <image name="pause.png" width="30" height="20"/>
         <image name="play.png" width="30" height="20"/>
-        <image name="rewind.png" width="30" height="20"/>
+        <image name="skipback.png" width="30" height="20"/>
+        <image name="skipfwd.png" width="30" height="20"/>
         <image name="stop.png" width="30" height="20"/>
     </resources>
 </document>

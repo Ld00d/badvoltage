@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6310DE041968DB0D00C6BF97 /* bvsquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 6310DE031968DB0D00C6BF97 /* bvsquare.png */; };
 		6310DE061968DDBE00C6BF97 /* bvsquare120.png in Resources */ = {isa = PBXBuildFile; fileRef = 6310DE051968DDBE00C6BF97 /* bvsquare120.png */; };
+		631D06E7197B335F003635CB /* skipback.png in Resources */ = {isa = PBXBuildFile; fileRef = 631D06E6197B335F003635CB /* skipback.png */; };
+		631D06E9197B3369003635CB /* skipfwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 631D06E8197B3369003635CB /* skipfwd.png */; };
 		635D063018D29B4D00CD8EE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D062F18D29B4D00CD8EE4 /* Foundation.framework */; };
 		635D063218D29B4D00CD8EE4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D063118D29B4D00CD8EE4 /* CoreGraphics.framework */; };
 		635D063418D29B4D00CD8EE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D063318D29B4D00CD8EE4 /* UIKit.framework */; };
@@ -62,6 +64,8 @@
 /* Begin PBXFileReference section */
 		6310DE031968DB0D00C6BF97 /* bvsquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bvsquare.png; sourceTree = "<group>"; };
 		6310DE051968DDBE00C6BF97 /* bvsquare120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bvsquare120.png; sourceTree = "<group>"; };
+		631D06E6197B335F003635CB /* skipback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skipback.png; sourceTree = "<group>"; };
+		631D06E8197B3369003635CB /* skipfwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skipfwd.png; sourceTree = "<group>"; };
 		635D062C18D29B4D00CD8EE4 /* BadVoltageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadVoltageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		635D062F18D29B4D00CD8EE4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		635D063118D29B4D00CD8EE4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -243,6 +247,8 @@
 				63C15C5A18EAF07F004A25A1 /* play.png */,
 				63C6EAA018F0D8290073BB6A /* pause.png */,
 				63C15C5C18EAF0F4004A25A1 /* stop.png */,
+				631D06E6197B335F003635CB /* skipback.png */,
+				631D06E8197B3369003635CB /* skipfwd.png */,
 				63C6EAAA18FB1A0D0073BB6A /* thumb.png */,
 				63C15C6018EAF4AB004A25A1 /* rewind.png */,
 				63C6EAA218F9ABB00073BB6A /* BVImages.h */,
@@ -362,6 +368,7 @@
 			files = (
 				63EE3ECD190C5449002E521B /* next.png in Resources */,
 				639FBA15195D19DF003E5B35 /* BVPodcastDetailViewController.xib in Resources */,
+				631D06E9197B3369003635CB /* skipfwd.png in Resources */,
 				63C15C5B18EAF07F004A25A1 /* play.png in Resources */,
 				63C15C5D18EAF0F4004A25A1 /* stop.png in Resources */,
 				6310DE041968DB0D00C6BF97 /* bvsquare.png in Resources */,
@@ -371,6 +378,7 @@
 				635D067718D4D83700CD8EE4 /* settings.plist in Resources */,
 				63C15C4418E289AD004A25A1 /* horizontalblackbg@2x.png in Resources */,
 				63C15C5F18EAF18D004A25A1 /* fastforward.png in Resources */,
+				631D06E7197B335F003635CB /* skipback.png in Resources */,
 				63C6EAAB18FB1A0D0073BB6A /* thumb.png in Resources */,
 				63C6EAA918F9F88F0073BB6A /* BVPodcastPlayerViewController.xib in Resources */,
 				635D066818D4C4A900CD8EE4 /* bv-lightning.jpg in Resources */,
