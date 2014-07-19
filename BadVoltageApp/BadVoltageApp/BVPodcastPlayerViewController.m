@@ -64,6 +64,7 @@ static void *currentItemContext = &currentItemContext;
     return _episode;
 }
 
+
 - (void)setEpisode:(BVPodcastEpisode *)episode
 {
     if (episode != _episode) { //if we're already on this episode, leave it as is
@@ -112,6 +113,10 @@ static void *currentItemContext = &currentItemContext;
                             });
          }];
         
+        [self attachRemoteControl];
+        
+        
+        
         UIImage *albumArtImage = [BVImages imageNamed:@"bvsquare"];
         MPMediaItemArtwork *albumArt = [[MPMediaItemArtwork alloc] initWithImage:albumArtImage];
         
@@ -119,10 +124,8 @@ static void *currentItemContext = &currentItemContext;
         
         infoCenter.nowPlayingInfo = @{MPMediaItemPropertyArtist:@"Bad Voltage",
                                       MPMediaItemPropertyTitle:_episode.title,
-                                      MPMediaItemPropertyArtwork:albumArt};
-        
-        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-        [self becomeFirstResponder];
+                                      MPMediaItemPropertyArtwork:albumArt,
+                                      MPMediaItemPropertyMediaType:@(MPMediaTypePodcast)};
     }
 }
 
@@ -141,7 +144,6 @@ static void *currentItemContext = &currentItemContext;
 }
 
 
-
 - (void)viewDidLoad
 {
     
@@ -154,7 +156,6 @@ static void *currentItemContext = &currentItemContext;
     [self.scrubber setValue:0.0];
     [self.scrubber setEnabled:NO];
     [self.scrubber setThumbImage:[BVImages imageNamed:@"thumb"] forState:UIControlStateNormal];
-    
     
     [super viewDidLoad];
 }
@@ -446,6 +447,40 @@ static void *currentItemContext = &currentItemContext;
 
 #pragma mark actions
 
+- (void)attachRemoteControl
+{
+    MPRemoteCommandCenter *rcc = [MPRemoteCommandCenter sharedCommandCenter];
+    
+    MPSkipIntervalCommand *skipCmd = rcc.skipBackwardCommand;
+    
+    skipCmd.enabled = YES;
+    skipCmd.preferredIntervals = @[@(30)];
+    
+    [skipCmd addTarget:self action:@selector(rewind:)];
+    
+    skipCmd = rcc.skipForwardCommand;
+    
+    skipCmd.enabled = YES;
+    skipCmd.preferredIntervals = @[@(30)];
+    
+    [skipCmd addTarget:self action:@selector(fastforward:)];
+    
+    MPRemoteCommand *cmd = rcc.playCommand;
+    cmd.enabled = YES;
+    [cmd addTarget:self action:@selector(play:)];
+    
+    cmd = rcc.pauseCommand;
+    cmd.enabled = YES;
+    [cmd addTarget:self action:@selector(pause:)];
+    
+    cmd = rcc.stopCommand;
+    cmd.enabled = YES;
+    [cmd addTarget:self action:@selector(stop:)];
+    
+}
+
+
+
 - (IBAction)rewind:(id)sender
 {
     double time = CMTimeGetSeconds(_player.currentTime);
@@ -485,51 +520,6 @@ static void *currentItemContext = &currentItemContext;
     
 }
 
-- (void)remoteControlReceivedWithEvent:(UIEvent *)event
-{
-    if (event.type == UIEventTypeRemoteControl) {
-        switch (event.subtype) {
-            case UIEventSubtypeRemoteControlTogglePlayPause:
-                if (self.playButton.enabled) {
-                    [self play:nil];
-                } else if (self.pauseButton.enabled) {
-                    [self pause:nil];
-                }
-                break;
-                
-            case UIEventSubtypeRemoteControlPlay:
-                [self play:nil];
-                break;
-                
-            case UIEventSubtypeRemoteControlBeginSeekingBackward:
-                [self rewind:nil];
-                break;
-                
-            case UIEventSubtypeRemoteControlEndSeekingBackward:
-            case UIEventSubtypeRemoteControlEndSeekingForward:
-                [self play:nil];
-                break;
-                
-            case UIEventSubtypeRemoteControlBeginSeekingForward:
-                [self fastforward:nil];
-                break;
-                
-            
-            case UIEventSubtypeRemoteControlPause:
-                [self pause:nil];
-                break;
-            
-            case UIEventSubtypeRemoteControlStop:
-                [self stop:nil];
-                break;
-                
-            default:
-                break;
-        }
-
-    }
-
-}
 
 #pragma mark -
 
